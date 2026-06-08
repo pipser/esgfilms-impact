@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESG Films — Impact</title>
+  <meta name="description" content="Pretvorimo vaš ESG izvještaj u film. Ispunite formu i plan vaše ESG kampanje bit će spreman kad se vratite s godišnjeg." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #e8e4dc;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    .ef-nav {
+      background: #1c1c1a;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ef-nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .ef-nav-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.15em;
+      color: #f0ede6;
+    }
+    .ef-nav-tag { font-size: 0.65rem; color: #555; letter-spacing: 0.12em; text-transform: uppercase; }
+    .ef-nav-url { font-size: 0.68rem; color: #555; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* HERO */
+    .ef-hero {
+      background: #1c1c1a;
+      padding: 3rem 2rem 3.5rem;
+      position: relative;
+    }
+    .ef-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: #d4520a;
+    }
+    .ef-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #d4520a;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+    .ef-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      letter-spacing: 0.05em;
+      line-height: 1.0;
+      color: #f0ede6;
+      margin-bottom: 1.25rem;
+    }
+    .ef-hero h1 em { font-style: normal; color: #d4520a; }
+    .ef-hero p {
+      font-size: 0.9rem;
+      color: #888;
+      max-width: 480px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* BODY */
+    .ef-body {
+      padding: 2.5rem 2rem;
+      max-width: 660px;
+    }
+
+    .ef-section { margin-bottom: 3rem; }
+
+    .ef-section-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .ef-section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      color: #d4520a;
+      letter-spacing: 0.1em;
+      background: #1c1c1a;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .ef-section-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: 500;
+    }
+
+    .ef-field { margin-bottom: 1.25rem; }
+
+    .ef-label {
+      display: block;
+      font-size: 0.82rem;
+      color: #444;
+      margin-bottom: 0.45rem;
+      font-weight: 500;
+    }
+    .ef-opt-note { font-size: 0.7rem; color: #aaa; font-weight: 300; margin-left: 0.3rem; }
+
+    .ef-input {
+      width: 100%;
+      background: #f5f2eb;
+      border: 1px solid #ccc9c0;
+      border-bottom: 2px solid #bbb8b0;
+      color: #1a1a1a;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      border-radius: 3px;
+      outline: none;
+      transition: border-bottom-color 0.2s, background 0.2s;
+    }
+    .ef-input:focus { border-bottom-color: #d4520a; background: #fff; }
+
+    .ef-choices { display: flex; flex-direction: column; gap: 0.45rem; }
+
+    .ef-choice {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 1rem;
+      background: #f5f2eb;
+      border: 1px solid #ccc9c0;
+      border-left: 3px solid transparent;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: border-left-color 0.15s, background 0.15s;
+      font-size: 0.875rem;
+      color: #444;
+      user-select: none;
+      line-height: 1.4;
+    }
+    .ef-choice:hover { border-left-color: #d4520a; color: #1a1a1a; }
+    .ef-choice.picked { border-left-color: #d4520a; background: #fdf8f3; color: #1a1a1a; font-weight: 500; }
+    .ef-choice input { accent-color: #d4520a; width: 15px; height: 15px; flex-shrink: 0; }
+
+    .ef-upload {
+      width: 100%;
+      background: #f5f2eb;
+      border: 1.5px dashed #ccc9c0;
+      border-radius: 3px;
+      padding: 1.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      position: relative;
+      text-align: center;
+    }
+    .ef-upload:hover { border-color: #d4520a; }
+    .ef-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .ef-upload-icon { font-size: 1.4rem; color: #bbb; }
+    .ef-upload-main { font-size: 0.82rem; color: #888; }
+    .ef-upload-main span { color: #d4520a; font-weight: 500; }
+    .ef-upload-sub { font-size: 0.72rem; color: #bbb; }
+    .ef-filename { font-size: 0.78rem; color: #d4520a; display: none; font-weight: 500; }
+
+    .ef-textarea {
+      width: 100%;
+      background: #f5f2eb;
+      border: 1px solid #ccc9c0;
+      border-bottom: 2px solid #bbb8b0;
+      color: #1a1a1a;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      border-radius: 3px;
+      resize: vertical;
+      min-height: 76px;
+      outline: none;
+      transition: border-bottom-color 0.2s;
+      margin-top: 0.45rem;
+    }
+    .ef-textarea:focus { border-bottom-color: #d4520a; background: #fff; }
+    .ef-textarea::placeholder { color: #bbb; }
+
+    .ef-date {
+      background: #f5f2eb;
+      border: 1px solid #ccc9c0;
+      border-bottom: 2px solid #bbb8b0;
+      color: #1a1a1a;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      border-radius: 3px;
+      outline: none;
+      transition: border-bottom-color 0.2s;
+    }
+    .ef-date:focus { border-bottom-color: #d4520a; }
+
+    .ef-promise {
+      margin-top: 1rem;
+      padding: 1rem 1.25rem;
+      background: #1c1c1a;
+      border-radius: 3px;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .ef-promise-line { width: 3px; background: #d4520a; border-radius: 2px; flex-shrink: 0; align-self: stretch; }
+    .ef-promise p { font-size: 0.85rem; color: #c47a4a; font-style: italic; line-height: 1.65; font-weight: 300; }
+
+    .ef-submit-wrap { margin-top: 0.5rem; border-top: 1px solid #ccc9c0; padding-top: 2rem; }
+
+    .ef-submit {
+      background: #d4520a;
+      color: #fff;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.18em;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .ef-submit:hover { background: #b83f00; }
+
+    /* FOOTER */
+    .ef-footer {
+      background: #1c1c1a;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .ef-footer-left { font-size: 0.7rem; color: #555; letter-spacing: 0.05em; }
+    .ef-footer-right { font-size: 0.7rem; color: #555; font-style: italic; }
+
+    /* SUCCESS */
+    .ef-success {
+      display: none;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .ef-success h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      letter-spacing: 0.08em;
+      color: #1c1c1a;
+      margin: 1.5rem 0 0.5rem;
+    }
+    .ef-success h2 span { color: #d4520a; }
+    .ef-success p { color: #888; font-size: 0.9rem; line-height: 1.7; font-weight: 300; }
+  </style>
+</head>
+<body>
+
+  <nav class="ef-nav">
+    <div class="ef-nav-logo">
+      <svg width="32" height="24" viewBox="0 0 32 24" fill="none" aria-hidden="true">
+        <polygon points="0,0 14,12 0,24" fill="#c8c4bc"/>
+        <polygon points="18,0 32,12 18,24" fill="#a0a09a"/>
+        <polygon points="7,12 18,5 18,19" fill="#d4520a" opacity="0.85"/>
+      </svg>
+      <div>
+        <div class="ef-nav-name">ESG Films</div>
+        <div class="ef-nav-tag">Making Impact Visible</div>
+      </div>
+    </div>
+    <div class="ef-nav-url">impact.esgfilms.eu</div>
+  </nav>
+
+  <div class="ef-hero">
+    <div class="ef-eyebrow">ESG Kampanja — 2025 / 2026</div>
+    <h1>Pretvorimo vaš<br>ESG izvještaj<br>u <em>film.</em></h1>
+    <p>Ispunite kratku formu i dok ste na godišnjem, mi ćemo pripremiti plan vaše ESG kampanje. Samo recite kad se vraćate.</p>
+  </div>
+
+  <div class="ef-body">
+    <form id="esgForm">
+
+      <div class="ef-section">
+        <div class="ef-section-head">
+          <div class="ef-section-num">01</div>
+          <div class="ef-section-title">O vama</div>
+        </div>
+        <div class="ef-field">
+          <label class="ef-label" for="company">Naziv tvrtke</label>
+          <input class="ef-input" type="text" id="company" name="company" required />
+        </div>
+        <div class="ef-field">
+          <label class="ef-label" for="contact">Ime i prezime</label>
+          <input class="ef-input" type="text" id="contact" name="contact" required />
+        </div>
+        <div class="ef-field">
+          <label class="ef-label" for="email">Email adresa</label>
+          <input class="ef-input" type="email" id="email" name="email" required />
+        </div>
+      </div>
+
+      <div class="ef-section">
+        <div class="ef-section-head">
+          <div class="ef-section-num">02</div>
+          <div class="ef-section-title">Vaš ESG izvještaj</div>
+        </div>
+        <div class="ef-field">
+          <label class="ef-label">Imate li već ESG izvještaj?</label>
+          <div class="ef-choices">
+            <label class="ef-choice"><input type="radio" name="rep" value="da" /> Da, imamo objavljen izvještaj</label>
+            <label class="ef-choice"><input type="radio" name="rep" value="u-pripremi" /> U pripremi je</label>
+            <label class="ef-choice"><input type="radio" name="rep" value="ne" /> Još nemamo</label>
+          </div>
+        </div>
+        <div class="ef-field">
+          <label class="ef-label">Učitajte vaš ESG izvještaj <span class="ef-opt-note">neobavezno</span></label>
+          <div class="ef-upload">
+            <input type="file" id="repFile" name="repFile" accept=".pdf" />
+            <i class="ti ti-file-upload ef-upload-icon" aria-hidden="true"></i>
+            <div class="ef-upload-main">Povucite PDF ovdje ili <span>odaberite datoteku</span></div>
+            <div class="ef-upload-sub">PDF, max 20 MB</div>
+            <div class="ef-filename" id="fname"></div>
+          </div>
+        </div>
+        <div class="ef-field">
+          <label class="ef-label">Kojoj publici je namijenjena vaša ESG komunikacija?</label>
+          <div class="ef-choices">
+            <label class="ef-choice"><input type="checkbox" name="pub" value="zaposlenici" /> Zaposlenici</label>
+            <label class="ef-choice"><input type="checkbox" name="pub" value="investitori" /> Investitori i dioničari</label>
+            <label class="ef-choice"><input type="checkbox" name="pub" value="kupci" /> Kupci i poslovni partneri</label>
+            <label class="ef-choice"><input type="checkbox" name="pub" value="javnost" /> Šira javnost i mediji</label>
+            <label class="ef-choice"><input type="checkbox" name="pub" value="sve" /> Svima navedenima</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="ef-section">
+        <div class="ef-section-head">
+          <div class="ef-section-num">03</div>
+          <div class="ef-section-title">Vaš izazov</div>
+        </div>
+        <div class="ef-field">
+          <label class="ef-label">Koji je vaš najveći izazov u komunikaciji ESG izvještaja?</label>
+          <div class="ef-choices">
+            <label class="ef-choice"><input type="checkbox" name="ch" value="kompleksnost" /> Izvještaj je previše kompleksan za širu publiku</label>
+            <label class="ef-choice"><input type="checkbox" name="ch" value="angažiranost" /> Teško je zainteresirati i angažirati publiku</label>
+            <label class="ef-choice"><input type="checkbox" name="ch" value="publika" /> Različite publike trebaju različit sadržaj</label>
+            <label class="ef-choice"><input type="checkbox" name="ch" value="pocetak" /> Ne znamo odakle krenuti</label>
+          </div>
+          <textarea class="ef-textarea" id="chFree" name="chFree" placeholder="Dodajte što god smatrate važnim..."></textarea>
+        </div>
+        <div class="ef-field">
+          <label class="ef-label">Jeste li već radili ESG video ili film komunikaciju?</label>
+          <div class="ef-choices">
+            <label class="ef-choice"><input type="radio" name="vid" value="da" /> Da, imamo iskustva</label>
+            <label class="ef-choice"><input type="radio" name="vid" value="ne" /> Ne, ovo bi bio prvi put</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="ef-section">
+        <div class="ef-section-head">
+          <div class="ef-section-num">04</div>
+          <div class="ef-section-title">Godišnji odmor</div>
+        </div>
+        <div class="ef-field">
+          <label class="ef-label" for="returnDate">Kad se vraćate s godišnjeg?</label>
+          <input class="ef-date" type="date" id="returnDate" name="returnDate" />
+          <div class="ef-promise">
+            <div class="ef-promise-line"></div>
+            <p>Javite nam kad se vraćate — plan vaše ESG kampanje bit će spreman kada se vratite.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ef-submit-wrap">
+        <button type="submit" class="ef-submit">Pošalji — pokrenimo vaš impact ↗</button>
+      </div>
+
+    </form>
+
+    <div class="ef-success" id="successMsg">
+      <svg width="48" height="36" viewBox="0 0 48 36" fill="none" aria-hidden="true">
+        <polygon points="0,0 21,18 0,36" fill="#c8c4bc"/>
+        <polygon points="27,0 48,18 27,36" fill="#a0a09a"/>
+        <polygon points="10,18 27,7 27,29" fill="#d4520a"/>
+      </svg>
+      <h2>Hvala, <span>vidimo se!</span></h2>
+      <p>Javit ćemo vam se s planom ESG kampanje čim se vratite s godišnjeg.<br>Do tada — uživajte u odmoru.</p>
+    </div>
+  </div>
+
+  <footer class="ef-footer">
+    <div class="ef-footer-left">ESG Films d.o.o. · Mohorovičićeva 22, Zagreb · info@esgfilms.eu</div>
+    <div class="ef-footer-right">Making Impact Visible</div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.ef-choice').forEach(el => {
+      const inp = el.querySelector('input');
+      if (!inp) return;
+      inp.addEventListener('change', () => {
+        if (inp.type === 'radio') {
+          document.querySelectorAll(`input[name="${inp.name}"]`).forEach(r => {
+            r.closest('.ef-choice').classList.remove('picked');
+          });
+        }
+        el.classList.toggle('picked', inp.checked);
+      });
+    });
+
+    const fi = document.getElementById('repFile');
+    const fn = document.getElementById('fname');
+    fi.addEventListener('change', () => {
+      if (fi.files[0]) {
+        fn.textContent = '✓ ' + fi.files[0].name;
+        fn.style.display = 'block';
+        document.querySelector('.ef-upload-main').style.opacity = '0.4';
+        document.querySelector('.ef-upload-sub').style.opacity = '0.4';
+      }
+    });
+
+    document.getElementById('esgForm').addEventListener('submit', e => {
+      e.preventDefault();
+      document.getElementById('esgForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      window.scrollTo(0, 0);
+    });
+  </script>
+
+</body>
+</html>
