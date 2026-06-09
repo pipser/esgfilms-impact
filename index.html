@@ -1,447 +1,284 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ESG Films — Impact</title>
-  <meta name="description" content="Pretvorimo vaš ESG izvještaj u film. Ispunite formu i plan vaše ESG kampanje bit će spreman kad se vratite s godišnjeg." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>summer.esgfilms.eu</title>
+<meta name="description" content="Pretvorimo vaš ESG izvještaj u film. Ispunite formu i plan vaše ESG kampanje bit će spreman kad se vratite s godišnjeg."/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#e2ddd5;color:#1a1a18;min-height:100vh;overflow-x:hidden}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: #e8e4dc;
-      color: #1a1a1a;
-      min-height: 100vh;
-    }
+.nav{background:#1c1c1a;padding:1.25rem 3rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:.85rem}
+.nav-name{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.18em;color:#e8e4dc}
+.nav-tag{font-size:.58rem;color:#555;letter-spacing:.15em;text-transform:uppercase;margin-top:2px}
+.nav-url{font-size:.6rem;color:#555;letter-spacing:.12em;text-transform:uppercase}
 
-    /* NAV */
-    .ef-nav {
-      background: #1c1c1a;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .ef-nav-logo { display: flex; align-items: center; gap: 0.75rem; }
-    .ef-nav-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem;
-      letter-spacing: 0.15em;
-      color: #f0ede6;
-    }
-    .ef-nav-tag { font-size: 0.65rem; color: #555; letter-spacing: 0.12em; text-transform: uppercase; }
-    .ef-nav-url { font-size: 0.68rem; color: #555; letter-spacing: 0.1em; text-transform: uppercase; }
+.hero{position:relative;overflow:hidden;min-height:480px}
+.hero-bg{position:absolute;inset:-30px;background-image:url('DE_TURIZAM7.png');background-size:cover;background-position:center 40%;filter:url(#water)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.62) 0%,rgba(10,10,8,.48) 55%,rgba(10,10,8,.88) 100%);z-index:1}
+.hero-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,#d4520a 40%,transparent);z-index:3}
+.hero-content{position:relative;z-index:2;padding:4.5rem 3rem 5rem}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5.5rem);letter-spacing:.04em;line-height:.93;color:#f0ede6;margin-bottom:1.5rem}
+.hero h1 em{font-style:normal;color:#d4520a}
+.hero-sub{font-size:.9rem;color:rgba(240,237,230,.65);max-width:420px;line-height:1.9;font-weight:300;letter-spacing:.02em}
+.typed-cursor{display:inline-block;width:2px;height:.75em;background:#d4520a;margin-left:2px;vertical-align:middle;animation:blink .7s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-    /* HERO */
-    .ef-hero {
-      background: #1c1c1a;
-      padding: 3rem 2rem 3.5rem;
-      position: relative;
-    }
-    .ef-hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: #d4520a;
-    }
-    .ef-eyebrow {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #d4520a;
-      margin-bottom: 0.75rem;
-      font-weight: 500;
-    }
-    .ef-hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      letter-spacing: 0.05em;
-      line-height: 1.0;
-      color: #f0ede6;
-      margin-bottom: 1.25rem;
-    }
-    .ef-hero h1 em { font-style: normal; color: #d4520a; }
-    .ef-hero p {
-      font-size: 0.9rem;
-      color: #888;
-      max-width: 480px;
-      line-height: 1.75;
-      font-weight: 300;
-    }
+.form-outer{background:#e2ddd5;padding:0 3rem 8rem}
+.form-inner{max-width:700px}
 
-    /* BODY */
-    .ef-body {
-      padding: 2.5rem 2rem;
-      max-width: 660px;
-    }
+.section{padding:4.5rem 0;border-top:1px solid rgba(26,26,24,.08)}
+.section:first-child{border-top:none;padding-top:4rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em;color:#1a1a18;line-height:1;margin-bottom:2.5rem;display:inline-block;transition:transform .22s cubic-bezier(.34,1.56,.64,1);cursor:default}
+.section-title:hover{transform:scale(1.07) perspective(200px) translateZ(5px)}
 
-    .ef-section { margin-bottom: 3rem; }
+.upload-zone{border:1px solid rgba(26,26,24,.12);border-radius:3px;padding:3.5rem 2rem;display:flex;flex-direction:column;align-items:center;gap:.55rem;cursor:pointer;position:relative;text-align:center;background:rgba(26,26,24,.02);transition:border-color .3s,background .3s,transform .22s cubic-bezier(.34,1.56,.64,1)}
+.upload-zone:hover{border-color:rgba(212,82,10,.5);background:rgba(212,82,10,.02);transform:scale(1.015) perspective(600px) translateZ(4px)}
+.upload-zone.has-file{border-color:#d4520a;background:rgba(212,82,10,.03)}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon-wrap{width:46px;height:46px;border:1px solid rgba(26,26,24,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:.4rem;font-size:1.3rem;transition:border-color .3s,background .3s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+.upload-zone:hover .upload-icon-wrap{border-color:#d4520a;background:rgba(212,82,10,.06);transform:scale(1.18) perspective(200px) translateZ(7px)}
+.upload-zone.has-file .upload-icon-wrap{border-color:#d4520a;background:rgba(212,82,10,.06)}
+.upload-main{font-size:.8rem;color:#888}
+.upload-main span{color:#d4520a}
+.upload-sub{font-size:.66rem;color:#aaa;letter-spacing:.05em}
+.upload-filename{font-size:.78rem;color:#d4520a;font-weight:500;display:none}
+.upload-ok{font-size:.65rem;color:#5a9a5a;display:none;letter-spacing:.06em;text-transform:uppercase}
 
-    .ef-section-head {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-    .ef-section-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem;
-      color: #d4520a;
-      letter-spacing: 0.1em;
-      background: #1c1c1a;
-      padding: 0.2rem 0.5rem;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .ef-section-title {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #888;
-      font-weight: 500;
-    }
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.choice{display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;background:rgba(26,26,24,.03);border:1px solid rgba(26,26,24,.1);border-radius:3px;cursor:pointer;font-size:.82rem;color:#666;user-select:none;line-height:1.4;transition:border-color .2s,background .2s,transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.choice:hover{border-color:rgba(212,82,10,.4);color:#1a1a18;background:rgba(212,82,10,.03);transform:scale(1.025) perspective(400px) translateZ(4px)}
+.choice.picked{border-color:#d4520a;background:rgba(212,82,10,.05);color:#1a1a18}
+.choice input{accent-color:#d4520a;width:13px;height:13px;flex-shrink:0}
+.choice-full{grid-column:1/-1}
 
-    .ef-field { margin-bottom: 1.25rem; }
+.ripple-circle{position:absolute;border-radius:50%;background:rgba(212,82,10,.22);transform:scale(0);animation:ripple-expand .65s ease-out forwards;pointer-events:none}
+@keyframes ripple-expand{to{transform:scale(4);opacity:0}}
 
-    .ef-label {
-      display: block;
-      font-size: 0.82rem;
-      color: #444;
-      margin-bottom: 0.45rem;
-      font-weight: 500;
-    }
-    .ef-opt-note { font-size: 0.7rem; color: #aaa; font-weight: 300; margin-left: 0.3rem; }
+.textarea-wrap{position:relative}
+.textarea{width:100%;background:transparent;border:none;border-bottom:1.5px solid #d4520a;color:#1a1a18;padding:1rem 0 3rem;font-family:'DM Sans',sans-serif;font-size:.9rem;resize:none;min-height:120px;outline:none;transition:border-bottom-color .2s;line-height:1.8}
+.textarea:focus{border-bottom-color:#b83d06}
+.textarea::placeholder{color:#bbb}
+.textarea-hint{position:absolute;bottom:.5rem;left:0;right:0;font-size:.67rem;color:#bbb;pointer-events:none;line-height:1.6;transition:opacity .3s}
+.textarea.has-text~.textarea-hint{opacity:0}
 
-    .ef-input {
-      width: 100%;
-      background: #f5f2eb;
-      border: 1px solid #ccc9c0;
-      border-bottom: 2px solid #bbb8b0;
-      color: #1a1a1a;
-      padding: 0.75rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      border-radius: 3px;
-      outline: none;
-      transition: border-bottom-color 0.2s, background 0.2s;
-    }
-    .ef-input:focus { border-bottom-color: #d4520a; background: #fff; }
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem 3rem}
+.input-label{font-size:.62rem;color:#888;margin-bottom:.55rem;letter-spacing:.14em;text-transform:uppercase;display:block}
+.input{width:100%;background:transparent;border:none;border-bottom:1.5px solid #d4520a;color:#1a1a18;padding:.7rem 0;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-bottom-color .2s}
+.input:focus{border-bottom-color:#b83d06}
 
-    .ef-choices { display: flex; flex-direction: column; gap: 0.45rem; }
+.vacation-text{font-size:.95rem;color:#888;font-weight:300;line-height:1.75;margin-bottom:1.5rem;letter-spacing:.01em}
+.date-input{background:transparent;border:none;border-bottom:1.5px solid #d4520a;color:#1a1a18;padding:.7rem 0;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-bottom-color .2s;color-scheme:light;cursor:pointer}
+.date-input:focus{border-bottom-color:#b83d06}
 
-    .ef-choice {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.65rem 1rem;
-      background: #f5f2eb;
-      border: 1px solid #ccc9c0;
-      border-left: 3px solid transparent;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: border-left-color 0.15s, background 0.15s;
-      font-size: 0.875rem;
-      color: #444;
-      user-select: none;
-      line-height: 1.4;
-    }
-    .ef-choice:hover { border-left-color: #d4520a; color: #1a1a1a; }
-    .ef-choice.picked { border-left-color: #d4520a; background: #fdf8f3; color: #1a1a1a; font-weight: 500; }
-    .ef-choice input { accent-color: #d4520a; width: 15px; height: 15px; flex-shrink: 0; }
+.submit-area{margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(26,26,24,.08);display:flex;align-items:center;justify-content:space-between;gap:2rem;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+.submit-area.show{opacity:1;transform:translateY(0)}
+.submit-note{font-size:.65rem;color:#aaa;letter-spacing:.07em;text-transform:uppercase;line-height:1.8}
+.btn-submit{background:transparent;color:#d4520a;border:1px solid #d4520a;padding:.85rem 2.5rem;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.2em;border-radius:2px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s,transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.btn-submit:hover{background:#d4520a;color:#fff;transform:scale(1.05) perspective(300px) translateZ(5px)}
 
-    .ef-upload {
-      width: 100%;
-      background: #f5f2eb;
-      border: 1.5px dashed #ccc9c0;
-      border-radius: 3px;
-      padding: 1.75rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      cursor: pointer;
-      transition: border-color 0.2s;
-      position: relative;
-      text-align: center;
-    }
-    .ef-upload:hover { border-color: #d4520a; }
-    .ef-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-    .ef-upload-icon { font-size: 1.4rem; color: #bbb; }
-    .ef-upload-main { font-size: 0.82rem; color: #888; }
-    .ef-upload-main span { color: #d4520a; font-weight: 500; }
-    .ef-upload-sub { font-size: 0.72rem; color: #bbb; }
-    .ef-filename { font-size: 0.78rem; color: #d4520a; display: none; font-weight: 500; }
+.success{display:none;padding:6rem 3rem;text-align:center;background:#e2ddd5;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+.success.show{opacity:1;transform:translateY(0)}
+.success h2{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:.06em;color:#1a1a18;margin:1.5rem 0 .75rem;line-height:1}
+.success h2 span{color:#d4520a}
+.success p{font-size:.88rem;color:#888;line-height:1.9;font-weight:300}
 
-    .ef-textarea {
-      width: 100%;
-      background: #f5f2eb;
-      border: 1px solid #ccc9c0;
-      border-bottom: 2px solid #bbb8b0;
-      color: #1a1a1a;
-      padding: 0.75rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem;
-      border-radius: 3px;
-      resize: vertical;
-      min-height: 76px;
-      outline: none;
-      transition: border-bottom-color 0.2s;
-      margin-top: 0.45rem;
-    }
-    .ef-textarea:focus { border-bottom-color: #d4520a; background: #fff; }
-    .ef-textarea::placeholder { color: #bbb; }
-
-    .ef-date {
-      background: #f5f2eb;
-      border: 1px solid #ccc9c0;
-      border-bottom: 2px solid #bbb8b0;
-      color: #1a1a1a;
-      padding: 0.75rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      border-radius: 3px;
-      outline: none;
-      transition: border-bottom-color 0.2s;
-    }
-    .ef-date:focus { border-bottom-color: #d4520a; }
-
-    .ef-promise {
-      margin-top: 1rem;
-      padding: 1rem 1.25rem;
-      background: #1c1c1a;
-      border-radius: 3px;
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-    }
-    .ef-promise-line { width: 3px; background: #d4520a; border-radius: 2px; flex-shrink: 0; align-self: stretch; }
-    .ef-promise p { font-size: 0.85rem; color: #c47a4a; font-style: italic; line-height: 1.65; font-weight: 300; }
-
-    .ef-submit-wrap { margin-top: 0.5rem; border-top: 1px solid #ccc9c0; padding-top: 2rem; }
-
-    .ef-submit {
-      background: #d4520a;
-      color: #fff;
-      border: none;
-      padding: 1rem 2.5rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.15rem;
-      letter-spacing: 0.18em;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .ef-submit:hover { background: #b83f00; }
-
-    /* FOOTER */
-    .ef-footer {
-      background: #1c1c1a;
-      padding: 1.25rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .ef-footer-left { font-size: 0.7rem; color: #555; letter-spacing: 0.05em; }
-    .ef-footer-right { font-size: 0.7rem; color: #555; font-style: italic; }
-
-    /* SUCCESS */
-    .ef-success {
-      display: none;
-      text-align: center;
-      padding: 5rem 2rem;
-    }
-    .ef-success h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      letter-spacing: 0.08em;
-      color: #1c1c1a;
-      margin: 1.5rem 0 0.5rem;
-    }
-    .ef-success h2 span { color: #d4520a; }
-    .ef-success p { color: #888; font-size: 0.9rem; line-height: 1.7; font-weight: 300; }
-  </style>
+.footer{border-top:1px solid rgba(26,26,24,.08);padding:1.25rem 3rem;display:flex;align-items:center;justify-content:space-between;background:#1c1c1a;flex-wrap:wrap;gap:1rem}
+.footer-l{font-size:.62rem;color:#444;letter-spacing:.05em}
+.footer-r{font-size:.62rem;color:#333;font-style:italic}
+</style>
 </head>
 <body>
 
-  <nav class="ef-nav">
-    <div class="ef-nav-logo">
-      <svg width="32" height="24" viewBox="0 0 32 24" fill="none" aria-hidden="true">
-        <polygon points="0,0 14,12 0,24" fill="#c8c4bc"/>
-        <polygon points="18,0 32,12 18,24" fill="#a0a09a"/>
-        <polygon points="7,12 18,5 18,19" fill="#d4520a" opacity="0.85"/>
-      </svg>
+<svg width="0" height="0" style="position:absolute;pointer-events:none">
+  <defs>
+    <filter id="water" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence id="turb" type="turbulence" baseFrequency="0.012 0.008" numOctaves="4" seed="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <svg width="28" height="21" viewBox="0 0 28 21" fill="none" aria-hidden="true">
+      <polygon points="0,0 12,10.5 0,21" fill="#c8c4bc"/>
+      <polygon points="16,0 28,10.5 16,21" fill="#a0a09a"/>
+      <polygon points="5,10.5 16,4 16,17" fill="#d4520a" opacity=".9"/>
+    </svg>
+    <div>
+      <div class="nav-name">ESG Films</div>
+      <div class="nav-tag">Making Impact Visible</div>
+    </div>
+  </div>
+  <div class="nav-url">summer.esgfilms.eu</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <h1>Pretvorimo vaš<br>ESG izvještaj<br>u <em id="typed-word"></em><span class="typed-cursor"></span></h1>
+    <p class="hero-sub">Ispunite kratku formu. Dok ste na godišnjem,<br>mi ćemo pripremiti plan vaše ESG kampanje.</p>
+  </div>
+</div>
+
+<div class="form-outer" id="formOuter">
+<div class="form-inner">
+
+  <div class="section">
+    <div class="section-title">ESG Izvještaj</div>
+    <div class="upload-zone" id="dropZone">
+      <input type="file" id="repFile" accept=".pdf"/>
+      <div class="upload-icon-wrap">📄</div>
+      <div class="upload-main" id="uploadMain">Povucite PDF ovdje ili <span>odaberite datoteku</span></div>
+      <div class="upload-sub" id="uploadSub">PDF — max 20 MB</div>
+      <div class="upload-filename" id="fname"></div>
+      <div class="upload-ok" id="fok">✓ Datoteka učitana</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Vaša publika</div>
+    <div class="choices">
+      <label class="choice"><input type="checkbox" name="pub" value="zaposlenici"/> Zaposlenici</label>
+      <label class="choice"><input type="checkbox" name="pub" value="investitori"/> Investitori i dioničari</label>
+      <label class="choice"><input type="checkbox" name="pub" value="kupci"/> Kupci i poslovni partneri</label>
+      <label class="choice"><input type="checkbox" name="pub" value="javnost"/> Šira javnost i mediji</label>
+      <label class="choice choice-full"><input type="checkbox" name="pub" value="sve"/> Svima navedenima</label>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Vaš izazov</div>
+    <div class="textarea-wrap">
+      <textarea class="textarea" id="challenge" placeholder="Opišite nam vaš izazov u komunikaciji ESG izvještaja..."></textarea>
+      <div class="textarea-hint">npr. Izvještaj je previše kompleksan · Teško angažirati publiku · Različite publike trebaju različit sadržaj · Ne znamo odakle krenuti</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">O vama</div>
+    <div class="fields-row">
       <div>
-        <div class="ef-nav-name">ESG Films</div>
-        <div class="ef-nav-tag">Making Impact Visible</div>
+        <span class="input-label">Ime i prezime</span>
+        <input class="input" type="text" id="contact" name="contact"/>
       </div>
-    </div>
-    <div class="ef-nav-url">impact.esgfilms.eu</div>
-  </nav>
-
-  <div class="ef-hero">
-    <div class="ef-eyebrow">ESG Kampanja — 2025 / 2026</div>
-    <h1>Pretvorimo vaš<br>ESG izvještaj<br>u <em>film.</em></h1>
-    <p>Ispunite kratku formu i dok ste na godišnjem, mi ćemo pripremiti plan vaše ESG kampanje. Samo recite kad se vraćate.</p>
-  </div>
-
-  <div class="ef-body">
-    <form id="esgForm">
-
-      <div class="ef-section">
-        <div class="ef-section-head">
-          <div class="ef-section-num">01</div>
-          <div class="ef-section-title">O vama</div>
-        </div>
-        <div class="ef-field">
-          <label class="ef-label" for="company">Naziv tvrtke</label>
-          <input class="ef-input" type="text" id="company" name="company" required />
-        </div>
-        <div class="ef-field">
-          <label class="ef-label" for="contact">Ime i prezime</label>
-          <input class="ef-input" type="text" id="contact" name="contact" required />
-        </div>
-        <div class="ef-field">
-          <label class="ef-label" for="email">Email adresa</label>
-          <input class="ef-input" type="email" id="email" name="email" required />
-        </div>
+      <div>
+        <span class="input-label">Email adresa</span>
+        <input class="input" type="email" id="email" name="email"/>
       </div>
-
-      <div class="ef-section">
-        <div class="ef-section-head">
-          <div class="ef-section-num">02</div>
-          <div class="ef-section-title">Vaš ESG izvještaj</div>
-        </div>
-        <div class="ef-field">
-          <label class="ef-label">Imate li već ESG izvještaj?</label>
-          <div class="ef-choices">
-            <label class="ef-choice"><input type="radio" name="rep" value="da" /> Da, imamo objavljen izvještaj</label>
-            <label class="ef-choice"><input type="radio" name="rep" value="u-pripremi" /> U pripremi je</label>
-            <label class="ef-choice"><input type="radio" name="rep" value="ne" /> Još nemamo</label>
-          </div>
-        </div>
-        <div class="ef-field">
-          <label class="ef-label">Učitajte vaš ESG izvještaj <span class="ef-opt-note">neobavezno</span></label>
-          <div class="ef-upload">
-            <input type="file" id="repFile" name="repFile" accept=".pdf" />
-            <i class="ti ti-file-upload ef-upload-icon" aria-hidden="true"></i>
-            <div class="ef-upload-main">Povucite PDF ovdje ili <span>odaberite datoteku</span></div>
-            <div class="ef-upload-sub">PDF, max 20 MB</div>
-            <div class="ef-filename" id="fname"></div>
-          </div>
-        </div>
-        <div class="ef-field">
-          <label class="ef-label">Kojoj publici je namijenjena vaša ESG komunikacija?</label>
-          <div class="ef-choices">
-            <label class="ef-choice"><input type="checkbox" name="pub" value="zaposlenici" /> Zaposlenici</label>
-            <label class="ef-choice"><input type="checkbox" name="pub" value="investitori" /> Investitori i dioničari</label>
-            <label class="ef-choice"><input type="checkbox" name="pub" value="kupci" /> Kupci i poslovni partneri</label>
-            <label class="ef-choice"><input type="checkbox" name="pub" value="javnost" /> Šira javnost i mediji</label>
-            <label class="ef-choice"><input type="checkbox" name="pub" value="sve" /> Svima navedenima</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="ef-section">
-        <div class="ef-section-head">
-          <div class="ef-section-num">03</div>
-          <div class="ef-section-title">Vaš izazov</div>
-        </div>
-        <div class="ef-field">
-          <label class="ef-label">Koji je vaš najveći izazov u komunikaciji ESG izvještaja?</label>
-          <div class="ef-choices">
-            <label class="ef-choice"><input type="checkbox" name="ch" value="kompleksnost" /> Izvještaj je previše kompleksan za širu publiku</label>
-            <label class="ef-choice"><input type="checkbox" name="ch" value="angažiranost" /> Teško je zainteresirati i angažirati publiku</label>
-            <label class="ef-choice"><input type="checkbox" name="ch" value="publika" /> Različite publike trebaju različit sadržaj</label>
-            <label class="ef-choice"><input type="checkbox" name="ch" value="pocetak" /> Ne znamo odakle krenuti</label>
-          </div>
-          <textarea class="ef-textarea" id="chFree" name="chFree" placeholder="Dodajte što god smatrate važnim..."></textarea>
-        </div>
-        <div class="ef-field">
-          <label class="ef-label">Jeste li već radili ESG video ili film komunikaciju?</label>
-          <div class="ef-choices">
-            <label class="ef-choice"><input type="radio" name="vid" value="da" /> Da, imamo iskustva</label>
-            <label class="ef-choice"><input type="radio" name="vid" value="ne" /> Ne, ovo bi bio prvi put</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="ef-section">
-        <div class="ef-section-head">
-          <div class="ef-section-num">04</div>
-          <div class="ef-section-title">Godišnji odmor</div>
-        </div>
-        <div class="ef-field">
-          <label class="ef-label" for="returnDate">Kad se vraćate s godišnjeg?</label>
-          <input class="ef-date" type="date" id="returnDate" name="returnDate" />
-          <div class="ef-promise">
-            <div class="ef-promise-line"></div>
-            <p>Javite nam kad se vraćate — plan vaše ESG kampanje bit će spreman kada se vratite.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ef-submit-wrap">
-        <button type="submit" class="ef-submit">Pošalji — pokrenimo vaš impact ↗</button>
-      </div>
-
-    </form>
-
-    <div class="ef-success" id="successMsg">
-      <svg width="48" height="36" viewBox="0 0 48 36" fill="none" aria-hidden="true">
-        <polygon points="0,0 21,18 0,36" fill="#c8c4bc"/>
-        <polygon points="27,0 48,18 27,36" fill="#a0a09a"/>
-        <polygon points="10,18 27,7 27,29" fill="#d4520a"/>
-      </svg>
-      <h2>Hvala, <span>vidimo se!</span></h2>
-      <p>Javit ćemo vam se s planom ESG kampanje čim se vratite s godišnjeg.<br>Do tada — uživajte u odmoru.</p>
     </div>
   </div>
 
-  <footer class="ef-footer">
-    <div class="ef-footer-left">ESG Films d.o.o. · Mohorovičićeva 22, Zagreb · info@esgfilms.eu</div>
-    <div class="ef-footer-right">Making Impact Visible</div>
-  </footer>
+  <div class="section">
+    <div class="section-title">Godišnji odmor 🏖️</div>
+    <p class="vacation-text">Recite nam kad se vraćate — vaš ESG plan čeka vas po povratku.</p>
+    <input class="date-input" type="date" id="returnDate" name="returnDate"/>
+  </div>
 
-  <script>
-    document.querySelectorAll('.ef-choice').forEach(el => {
-      const inp = el.querySelector('input');
-      if (!inp) return;
-      inp.addEventListener('change', () => {
-        if (inp.type === 'radio') {
-          document.querySelectorAll(`input[name="${inp.name}"]`).forEach(r => {
-            r.closest('.ef-choice').classList.remove('picked');
-          });
-        }
-        el.classList.toggle('picked', inp.checked);
-      });
-    });
+  <div class="submit-area" id="submitArea">
+    <div class="submit-note">Sve informacije su povjerljive<br>i koriste se isključivo za pripremu vašeg plana</div>
+    <button class="btn-submit" id="btnSubmit">Pošalji ↗</button>
+  </div>
 
-    const fi = document.getElementById('repFile');
-    const fn = document.getElementById('fname');
-    fi.addEventListener('change', () => {
-      if (fi.files[0]) {
-        fn.textContent = '✓ ' + fi.files[0].name;
-        fn.style.display = 'block';
-        document.querySelector('.ef-upload-main').style.opacity = '0.4';
-        document.querySelector('.ef-upload-sub').style.opacity = '0.4';
-      }
-    });
+</div>
+</div>
 
-    document.getElementById('esgForm').addEventListener('submit', e => {
-      e.preventDefault();
-      document.getElementById('esgForm').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-      window.scrollTo(0, 0);
-    });
-  </script>
+<div class="success" id="successMsg">
+  <svg width="52" height="40" viewBox="0 0 52 40" fill="none" aria-hidden="true">
+    <polygon points="0,0 23,20 0,40" fill="#c8c4bc"/>
+    <polygon points="29,0 52,20 29,40" fill="#a0a09a"/>
+    <polygon points="11,20 29,8 29,32" fill="#d4520a"/>
+  </svg>
+  <h2>Hvala,<br><span>vidimo se!</span></h2>
+  <p>Javit ćemo vam se s planom ESG kampanje čim se vratite s godišnjeg.<br>Do tada — uživajte u odmoru.</p>
+</div>
 
+<footer class="footer">
+  <div class="footer-l">ESG Films d.o.o. · Mohorovičićeva 22, Zagreb · info@esgfilms.eu</div>
+  <div class="footer-r">Making Impact Visible</div>
+</footer>
+
+<script>
+/* ── SVG turbulence animacija ── */
+const turb = document.getElementById('turb');
+let phase = 0;
+function animateWater() {
+  phase += 0.0008;
+  const bfx = 0.012 + Math.sin(phase * 1.3) * 0.003;
+  const bfy = 0.008 + Math.cos(phase * 0.9) * 0.002;
+  turb.setAttribute('baseFrequency', bfx.toFixed(5) + ' ' + bfy.toFixed(5));
+  turb.setAttribute('seed', (3 + Math.sin(phase * 0.4) * 2).toFixed(3));
+  requestAnimationFrame(animateWater);
+}
+animateWater();
+
+/* ── circular ripple ── */
+function spawnRipple(el, e) {
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = e.clientX - rect.left - size / 2;
+  const y = e.clientY - rect.top  - size / 2;
+  const r = document.createElement('span');
+  r.className = 'ripple-circle';
+  r.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+x+'px;top:'+y+'px';
+  el.appendChild(r);
+  setTimeout(() => r.remove(), 700);
+}
+
+document.querySelectorAll('.choice').forEach(el => {
+  el.addEventListener('click', e => {
+    spawnRipple(el, e);
+    const inp = el.querySelector('input');
+    setTimeout(() => el.classList.toggle('picked', inp.checked), 0);
+  });
+});
+
+document.getElementById('btnSubmit').addEventListener('click', function(e) {
+  spawnRipple(this, e);
+  setTimeout(() => {
+    document.getElementById('formOuter').style.display = 'none';
+    const s = document.getElementById('successMsg');
+    s.style.display = 'block';
+    requestAnimationFrame(() => requestAnimationFrame(() => s.classList.add('show')));
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }, 300);
+});
+
+/* ── file upload ── */
+document.getElementById('repFile').addEventListener('change', function() {
+  if (!this.files[0]) return;
+  document.getElementById('fname').textContent = this.files[0].name;
+  document.getElementById('fname').style.display = 'block';
+  document.getElementById('fok').style.display = 'block';
+  document.getElementById('uploadMain').style.display = 'none';
+  document.getElementById('uploadSub').style.display = 'none';
+  document.getElementById('dropZone').classList.add('has-file');
+});
+
+document.getElementById('challenge').addEventListener('input', function() {
+  this.classList.toggle('has-text', this.value.trim().length > 0);
+});
+
+document.getElementById('returnDate').addEventListener('change', function() {
+  if (this.value) setTimeout(() => document.getElementById('submitArea').classList.add('show'), 300);
+});
+
+/* ── typed ── */
+const words = ['film.','priču.','impact.'];
+let wi=0, ci=0, del=false;
+const tw = document.getElementById('typed-word');
+function type() {
+  const w = words[wi];
+  if (!del) { tw.textContent=w.slice(0,++ci); if(ci===w.length){del=true;setTimeout(type,2400);return;} setTimeout(type,90); }
+  else { tw.textContent=w.slice(0,--ci); if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(type,300);return;} setTimeout(type,55); }
+}
+setTimeout(type, 1200);
+</script>
 </body>
 </html>
