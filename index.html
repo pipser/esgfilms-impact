@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>summer.esgfilms.eu</title>
 <meta name="description" content="Send us your ESG report before you leave. We'll analyse it and prepare an initial communication brief — ready on your desk when you're back."/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -15,7 +15,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .nav{background:#1c1c1a;padding:.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .nav-logo a{display:block;transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
 .nav-logo a:hover{transform:scale(1.06) perspective(300px) translateZ(4px)}
-.nav-logo img{height:88px;width:auto;display:block;filter:brightness(0) invert(1)}
+.nav-logo img{height:106px;width:auto;display:block;filter:brightness(0) invert(1)}
 .nav-url{font-size:.6rem;color:#555;letter-spacing:.12em;text-transform:uppercase}
 
 /* ── hero ── */
@@ -31,8 +31,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .hero-eyebrow .line{display:block}
 .hero-eyebrow .orange{color:#d4520a}
 .hero-text{flex:1;min-width:0}
-.hero-sub{font-size:1.2rem;color:rgba(255,255,255,.85);line-height:1.75;font-weight:300;margin-bottom:.85rem}
-.hero-sub2{font-size:1rem;color:rgba(255,255,255,.62);line-height:1.8;font-weight:300}
+.hero-sub{font-family:'Lora',Georgia,serif;font-size:clamp(1.4rem,2.5vw,2.2rem);font-style:italic;font-weight:400;color:rgba(255,255,255,.88);line-height:1.6;margin-bottom:0}
 
 @media(max-width:680px){
   .hero-inner{flex-direction:column;gap:2rem;align-items:flex-start}
@@ -165,7 +164,6 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       </div>
       <div class="hero-text">
         <p class="hero-sub">We think your ESG report is the foundation of a great story. Let us brainstorm while you chill.</p>
-        <p class="hero-sub2">Send us your ESG report before you leave. We'll analyse it and prepare an initial communication brief — ready on your desk when you're back.</p>
       </div>
     </div>
   </div>
@@ -178,7 +176,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
   <div class="step">
     <div class="step-label">Step 1 of 4</div>
     <div class="step-title">Your ESG report</div>
-    <p class="step-desc">PDF or link — whichever is easier.</p>
+    <p class="step-desc">Send us your ESG report before you leave. We'll analyse it and prepare an initial communication brief — ready on your desk when you're back.</p>
     <div class="upload-zone" id="dropZone">
       <input type="file" id="repFile" accept=".pdf"/>
       <div class="upload-icon-wrap">📄</div>
@@ -272,11 +270,6 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       <div>
         <span class="input-label">When are you back in the office?</span>
         <input class="date-input" type="date" id="returnDate" name="returnDate"/>
-      </div>
-      <div>
-        <span class="input-label">I'd like the brainstorm ready by:</span>
-        <input class="date-input" type="date" id="readyDate" name="readyDate"/>
-        <div class="date-note">We'll do our best to meet your preferred date.</div>
       </div>
     </div>
   </div>
