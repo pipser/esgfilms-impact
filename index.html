@@ -9,38 +9,13 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-
-body{
-  font-family:'DM Sans',sans-serif;
-  color:#fff;
-  overflow-x:hidden;
-  background-color:#0e1a10;
-}
+body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-color:#0e1a10}
 
 /* ── nav ── */
-.nav{
-  background:#1c1c1a;
-  padding:.75rem 3rem;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-.nav-logo a{
-  display:block;
-  transition:transform .22s cubic-bezier(.34,1.56,.64,1);
-}
-.nav-logo a:hover{
-  transform:scale(1.06) perspective(300px) translateZ(4px);
-}
-.nav-logo img{
-  height:120px;
-  width:auto;
-  display:block;
-  filter:brightness(0) invert(1);
-}
+.nav{background:#1c1c1a;padding:.75rem 3rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo a{display:block;transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
+.nav-logo a:hover{transform:scale(1.06) perspective(300px) translateZ(4px)}
+.nav-logo img{height:120px;width:auto;display:block;filter:brightness(0) invert(1)}
 .nav-url{font-size:.6rem;color:#555;letter-spacing:.12em;text-transform:uppercase}
 
 /* ── hero ── */
@@ -50,41 +25,45 @@ body{
   position:absolute;inset:0;
   background-image:url('DE_TURIZAM7.png');
   background-size:cover;
-  background-position:center 40%;
+  background-position:center top; /* gornji dio uvijek vidljiv — plaža i suncobrani */
 }
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(10,10,8,.5) 0%,rgba(10,10,8,.35) 50%,rgba(10,10,8,.9) 100%);
-  z-index:2;
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.45) 0%,rgba(10,10,8,.3) 50%,rgba(10,10,8,.9) 100%);z-index:2}
+.hero-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,#d4520a 40%,transparent);z-index:4}
+.hero-content{position:relative;z-index:3;padding:4rem 3rem 5rem}
+
+/* hero layout — side by side na wide, stack na mobile */
+.hero-inner{
+  display:flex;
+  align-items:center;
+  gap:4rem;
+  max-width:1100px;
 }
-.hero-line{
-  position:absolute;bottom:0;left:0;right:0;
-  height:3px;
-  background:linear-gradient(to right,transparent,#d4520a 40%,transparent);
-  z-index:4;
-}
-.hero-content{position:relative;z-index:3;padding:5rem 3rem 5.5rem}
 .hero-eyebrow{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3.5rem,8vw,6.5rem);
+  font-size:clamp(3.5rem,7vw,6rem);
   letter-spacing:.04em;
   line-height:.95;
   color:#fff;
-  margin-bottom:1.5rem;
+  flex-shrink:0;
 }
 .hero-eyebrow .line{display:block}
 .hero-eyebrow .orange{color:#d4520a}
-.hero-sub{font-size:.95rem;color:rgba(255,255,255,.65);max-width:500px;line-height:1.9;font-weight:300;margin-bottom:.75rem}
-.hero-sub2{font-size:.82rem;color:rgba(255,255,255,.45);max-width:480px;line-height:1.8;font-weight:300}
+
+.hero-text{
+  flex:1;
+  min-width:0;
+}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.85;font-weight:300;margin-bottom:1rem}
+.hero-sub2{font-size:.92rem;color:rgba(255,255,255,.5);line-height:1.85;font-weight:300}
+
+/* stack na mobile */
+@media(max-width:680px){
+  .hero-inner{flex-direction:column;gap:2rem;align-items:flex-start}
+  .hero-text{width:100%}
+}
 
 /* ── forma ── */
-.form-outer{
-  background:rgba(255,255,255,.96);
-  padding:0 3rem 6rem;
-  position:relative;
-  z-index:10;
-  color:#1a1a18;
-}
+.form-outer{background:rgba(255,255,255,.96);padding:0 3rem 6rem;position:relative;z-index:10;color:#1a1a18}
 .form-inner{max-width:680px}
 
 .step{padding:4rem 0;border-top:1px solid rgba(26,26,24,.08)}
@@ -151,7 +130,7 @@ body{
 .sun-pulse{font-size:1.2rem;animation:sunPulse 2s ease-in-out infinite;display:inline-block}
 @keyframes sunPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
 
-/* ── closing — fotografija DE_TURIZAM9 s mreškanjem ── */
+/* ── closing — DE_TURIZAM9, bez turbulence, donji dio fotografije ── */
 .closing{
   position:relative;
   overflow:hidden;
@@ -161,30 +140,18 @@ body{
   justify-content:center;
   z-index:10;
 }
-.closing-filter-wrap{
-  position:absolute;
-  inset:-30px;
-  filter:url(#water-closing);
-}
-.closing-filter-bg{
+.closing-bg{
   position:absolute;inset:0;
   background-image:url('DE_TURIZAM9.png');
-  background-size:80%;
-  background-position:center center;
-  background-repeat:no-repeat;
-  background-color:#0a1208;
+  background-size:cover;
+  background-position:center bottom; /* donji dio — stolice i natpis */
 }
 .closing-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(10,10,8,.6) 0%,rgba(10,10,8,.5) 50%,rgba(10,10,8,.75) 100%);
+  background:linear-gradient(to bottom,rgba(10,10,8,.55) 0%,rgba(10,10,8,.4) 50%,rgba(10,10,8,.65) 100%);
   z-index:2;
 }
-.closing-content{
-  position:relative;
-  z-index:3;
-  text-align:center;
-  padding:6rem 3rem;
-}
+.closing-content{position:relative;z-index:3;text-align:center;padding:6rem 3rem}
 .closing-nice{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#fff;line-height:1.1}
 .closing-emoji{font-size:3.5rem;margin:1rem 0;display:block;animation:sunPulse 2.5s ease-in-out infinite}
 .closing-surprise{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#d4520a;line-height:1.1}
@@ -205,16 +172,12 @@ body{
 </head>
 <body>
 
-<!-- SVG filteri — jedan za hero, jedan za closing -->
+<!-- SVG filter samo za hero -->
 <svg width="0" height="0" style="position:absolute;pointer-events:none">
   <defs>
     <filter id="water-hero" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
       <feTurbulence id="turb-hero" type="turbulence" baseFrequency="0.012 0.008" numOctaves="4" seed="3" result="noise"/>
       <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-    <filter id="water-closing" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-      <feTurbulence id="turb-closing" type="turbulence" baseFrequency="0.010 0.007" numOctaves="4" seed="7" result="noise2"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise2" scale="5" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
   </defs>
 </svg>
@@ -235,13 +198,17 @@ body{
   <div class="hero-overlay"></div>
   <div class="hero-line"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span class="line"><span class="orange">E</span>NJOY</span>
-      <span class="line"><span class="orange">S</span>UMMER.</span>
-      <span class="line"><span class="orange">G</span>ET READY.</span>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="line"><span class="orange">E</span>NJOY</span>
+        <span class="line"><span class="orange">S</span>UMMER.</span>
+        <span class="line"><span class="orange">G</span>ET READY.</span>
+      </div>
+      <div class="hero-text">
+        <p class="hero-sub">We think your ESG report is the foundation of a great story. Let us brainstorm while you chill.</p>
+        <p class="hero-sub2">Send us your ESG report before you leave. We'll analyse it and prepare an initial communication brief — ready on your desk when you're back.</p>
+      </div>
     </div>
-    <p class="hero-sub">We think your ESG report is the foundation of a great story.<br>Let us brainstorm while you chill.</p>
-    <p class="hero-sub2">Send us your ESG report before you leave. We'll analyse it and prepare an initial communication brief — ready on your desk when you're back.</p>
   </div>
 </div>
 
@@ -374,11 +341,9 @@ body{
 </div>
 </div>
 
-<!-- closing s DE_TURIZAM9 i mreškanjem -->
+<!-- closing — DE_TURIZAM9, bez turbulence, donji dio fotografije -->
 <div class="closing">
-  <div class="closing-filter-wrap">
-    <div class="closing-filter-bg"></div>
-  </div>
+  <div class="closing-bg"></div>
   <div class="closing-overlay"></div>
   <div class="closing-content">
     <div class="closing-nice">Have a nice summer.</div>
@@ -400,9 +365,8 @@ body{
 </footer>
 
 <script>
-/* ── SVG turbulence — hero i closing neovisno ── */
+/* ── SVG turbulence — samo hero ── */
 const turbHero = document.getElementById('turb-hero');
-const turbClosing = document.getElementById('turb-closing');
 let phase = 0;
 function animateWater() {
   phase += 0.0008;
@@ -410,10 +374,6 @@ function animateWater() {
   const bfy = 0.008 + Math.cos(phase * 0.9) * 0.002;
   turbHero.setAttribute('baseFrequency', bfx.toFixed(5) + ' ' + bfy.toFixed(5));
   turbHero.setAttribute('seed', (3 + Math.sin(phase * 0.4) * 2).toFixed(3));
-  const bfx2 = 0.010 + Math.sin(phase * 1.1 + 1) * 0.003;
-  const bfy2 = 0.007 + Math.cos(phase * 0.8 + 0.5) * 0.002;
-  turbClosing.setAttribute('baseFrequency', bfx2.toFixed(5) + ' ' + bfy2.toFixed(5));
-  turbClosing.setAttribute('seed', (7 + Math.sin(phase * 0.3 + 2) * 2).toFixed(3));
   requestAnimationFrame(animateWater);
 }
 animateWater();
