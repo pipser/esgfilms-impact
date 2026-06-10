@@ -10,17 +10,11 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 
-/* fotografija uvijek u pozadini — mirna, fiksirana */
 body{
   font-family:'DM Sans',sans-serif;
   color:#fff;
   overflow-x:hidden;
-  background-image:url('DE_TURIZAM7.png');
-  background-size:cover;
-  background-position:center 40%;
-  background-attachment:fixed;
   background-color:#0e1a10;
-  min-height:100vh;
 }
 
 /* ── nav ── */
@@ -41,28 +35,19 @@ body{
 .nav-logo a:hover{
   transform:scale(1.06) perspective(300px) translateZ(4px);
 }
-/* logo uvijek bijel bez obzira na dark mode */
 .nav-logo img{
   height:120px;
   width:auto;
   display:block;
   filter:brightness(0) invert(1);
 }
+.nav-url{font-size:.6rem;color:#555;letter-spacing:.12em;text-transform:uppercase}
 
-/* ── hero — ista fotografija + SVG mreškanje ── */
-.hero{
-  position:relative;
-  overflow:hidden;
-  min-height:520px;
-}
-.hero-filter-wrap{
-  position:absolute;
-  inset:-30px;
-  filter:url(#water);
-}
+/* ── hero ── */
+.hero{position:relative;overflow:hidden;min-height:520px}
+.hero-filter-wrap{position:absolute;inset:-30px;filter:url(#water-hero)}
 .hero-filter-bg{
-  position:absolute;
-  inset:0;
+  position:absolute;inset:0;
   background-image:url('DE_TURIZAM7.png');
   background-size:cover;
   background-position:center 40%;
@@ -78,10 +63,7 @@ body{
   background:linear-gradient(to right,transparent,#d4520a 40%,transparent);
   z-index:4;
 }
-.hero-content{
-  position:relative;z-index:3;
-  padding:5rem 3rem 5.5rem;
-}
+.hero-content{position:relative;z-index:3;padding:5rem 3rem 5.5rem}
 .hero-eyebrow{
   font-family:'Bebas Neue',sans-serif;
   font-size:clamp(3.5rem,8vw,6.5rem);
@@ -95,11 +77,9 @@ body{
 .hero-sub{font-size:.95rem;color:rgba(255,255,255,.65);max-width:500px;line-height:1.9;font-weight:300;margin-bottom:.75rem}
 .hero-sub2{font-size:.82rem;color:rgba(255,255,255,.45);max-width:480px;line-height:1.8;font-weight:300}
 
-/* ── forma pluta nad mirnom fotografijom iz body ── */
+/* ── forma ── */
 .form-outer{
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
+  background:rgba(255,255,255,.96);
   padding:0 3rem 6rem;
   position:relative;
   z-index:10;
@@ -107,7 +87,6 @@ body{
 }
 .form-inner{max-width:680px}
 
-/* ── steps ── */
 .step{padding:4rem 0;border-top:1px solid rgba(26,26,24,.08)}
 .step:first-child{border-top:none;padding-top:4rem}
 .step-label{font-size:.58rem;color:#d4520a;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.6rem;font-weight:500}
@@ -115,7 +94,6 @@ body{
 .step-title:hover{transform:scale(1.06) perspective(200px) translateZ(5px)}
 .step-desc{font-size:.78rem;color:#999;font-weight:300;line-height:1.7;margin-bottom:2rem}
 
-/* ── upload ── */
 .upload-zone{border:1.5px solid rgba(26,26,24,.15);border-radius:3px;padding:3rem 2rem;display:flex;flex-direction:column;align-items:center;gap:.55rem;cursor:pointer;position:relative;text-align:center;background:rgba(255,255,255,.8);transition:border-color .3s,background .3s,transform .22s cubic-bezier(.34,1.56,.64,1);margin-bottom:1.5rem}
 .upload-zone:hover{border-color:rgba(212,82,10,.5);background:rgba(212,82,10,.02);transform:scale(1.012) perspective(600px) translateZ(3px)}
 .upload-zone.has-file{border-color:#d4520a;background:rgba(212,82,10,.03)}
@@ -131,40 +109,17 @@ body{
 .or-divider{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;color:#ccc;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
 .or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:rgba(26,26,24,.08)}
 
-/* ── inputs — bijeli obrubi ── */
 .input-label{font-size:.62rem;color:#888;margin-bottom:.5rem;letter-spacing:.14em;text-transform:uppercase;display:block}
-.input{
-  width:100%;background:rgba(255,255,255,.9);
-  border:1.5px solid rgba(255,255,255,1);
-  border-radius:2px;
-  color:#1a1a18;
-  padding:.6rem .75rem;
-  font-family:'DM Sans',sans-serif;
-  font-size:.9rem;outline:none;
-  transition:border-color .2s,box-shadow .2s;
-  box-shadow:0 0 0 1px rgba(26,26,24,.1);
-}
+.input{width:100%;background:rgba(255,255,255,.9);border:1.5px solid rgba(255,255,255,1);border-radius:2px;color:#1a1a18;padding:.6rem .75rem;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s;box-shadow:0 0 0 1px rgba(26,26,24,.1)}
 .input:focus{border-color:#d4520a;box-shadow:0 0 0 1px #d4520a}
 .input::placeholder{color:#ccc}
 
-/* ── choices — bijeli obrubi ── */
 .brief-question{margin-bottom:2.5rem}
 .brief-q-label{font-size:.78rem;color:#1a1a18;font-weight:500;margin-bottom:1rem;line-height:1.5}
 .brief-q-label em{color:#999;font-style:normal;font-weight:300}
 
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
-.choice{
-  display:flex;align-items:center;gap:.65rem;
-  padding:.75rem .9rem;
-  background:rgba(255,255,255,.85);
-  border:1.5px solid rgba(255,255,255,1);
-  border-radius:3px;cursor:pointer;
-  font-size:.8rem;color:#666;
-  user-select:none;line-height:1.4;
-  transition:border-color .2s,background .2s,transform .22s cubic-bezier(.34,1.56,.64,1);
-  position:relative;overflow:hidden;
-  box-shadow:0 0 0 1px rgba(26,26,24,.08);
-}
+.choice{display:flex;align-items:center;gap:.65rem;padding:.75rem .9rem;background:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,1);border-radius:3px;cursor:pointer;font-size:.8rem;color:#666;user-select:none;line-height:1.4;transition:border-color .2s,background .2s,transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(26,26,24,.08)}
 .choice:hover{border-color:rgba(212,82,10,.6);color:#1a1a18;background:rgba(212,82,10,.04);transform:scale(1.02) perspective(400px) translateZ(3px)}
 .choice.picked{border-color:#d4520a;background:rgba(212,82,10,.06);color:#1a1a18;box-shadow:0 0 0 1px #d4520a}
 .choice input{accent-color:#d4520a;width:13px;height:13px;flex-shrink:0}
@@ -173,43 +128,21 @@ body{
 .ripple-circle{position:absolute;border-radius:50%;background:rgba(212,82,10,.2);transform:scale(0);animation:ripple-expand .65s ease-out forwards;pointer-events:none}
 @keyframes ripple-expand{to{transform:scale(4);opacity:0}}
 
-/* ── textarea ── */
-.textarea{
-  width:100%;background:rgba(255,255,255,.9);
-  border:1.5px solid rgba(255,255,255,1);
-  border-radius:2px;color:#1a1a18;
-  padding:.75rem;font-family:'DM Sans',sans-serif;
-  font-size:.9rem;resize:none;min-height:100px;
-  outline:none;transition:border-color .2s,box-shadow .2s;
-  line-height:1.8;
-  box-shadow:0 0 0 1px rgba(26,26,24,.1);
-}
+.textarea{width:100%;background:rgba(255,255,255,.9);border:1.5px solid rgba(255,255,255,1);border-radius:2px;color:#1a1a18;padding:.75rem;font-family:'DM Sans',sans-serif;font-size:.9rem;resize:none;min-height:100px;outline:none;transition:border-color .2s,box-shadow .2s;line-height:1.8;box-shadow:0 0 0 1px rgba(26,26,24,.1)}
 .textarea:focus{border-color:#d4520a;box-shadow:0 0 0 1px #d4520a}
 .textarea::placeholder{color:#ccc}
 .textarea-hint{font-size:.67rem;color:#bbb;line-height:1.6;margin-top:.4rem}
 
-/* ── dates ── */
 .date-row{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem 3rem}
-.date-input{
-  background:rgba(255,255,255,.9);
-  border:1.5px solid rgba(255,255,255,1);
-  border-radius:2px;color:#1a1a18;
-  padding:.6rem .75rem;font-family:'DM Sans',sans-serif;
-  font-size:.9rem;outline:none;
-  transition:border-color .2s;
-  color-scheme:light;cursor:pointer;width:100%;
-  box-shadow:0 0 0 1px rgba(26,26,24,.1);
-}
+.date-input{background:rgba(255,255,255,.9);border:1.5px solid rgba(255,255,255,1);border-radius:2px;color:#1a1a18;padding:.6rem .75rem;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;color-scheme:light;cursor:pointer;width:100%;box-shadow:0 0 0 1px rgba(26,26,24,.1)}
 .date-input:focus{border-color:#d4520a}
 .date-note{font-size:.67rem;color:#bbb;margin-top:.4rem;line-height:1.5}
 
-/* ── contact ── */
 .fields-row{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem 3rem;margin-bottom:2rem}
 .field-full{grid-column:1/-1}
 .checkbox-line{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;font-size:.82rem;color:#888;line-height:1.6;user-select:none;margin-top:.5rem}
 .checkbox-line input{accent-color:#d4520a;width:13px;height:13px;flex-shrink:0;margin-top:3px}
 
-/* ── submit ── */
 .submit-area{margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(26,26,24,.08);display:flex;align-items:center;justify-content:space-between;gap:2rem;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
 .submit-area.show{opacity:1;transform:translateY(0)}
 .submit-note{font-size:.63rem;color:#bbb;letter-spacing:.06em;text-transform:uppercase;line-height:1.9}
@@ -218,20 +151,44 @@ body{
 .sun-pulse{font-size:1.2rem;animation:sunPulse 2s ease-in-out infinite;display:inline-block}
 @keyframes sunPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
 
-/* ── closing — nad mirnom fotografijom ── */
+/* ── closing — fotografija DE_TURIZAM9 s mreškanjem ── */
 .closing{
-  background:rgba(28,28,26,.92);
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-  padding:5rem 3rem;
-  text-align:center;
   position:relative;
+  overflow:hidden;
+  min-height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   z-index:10;
 }
-.closing-nice{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:.06em;color:#fff;line-height:1.1}
-.closing-emoji{font-size:3rem;margin:.75rem 0;display:block;animation:sunPulse 2.5s ease-in-out infinite}
-.closing-surprise{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:.06em;color:#d4520a;line-height:1.1}
-.closing-contact{font-size:.75rem;color:#444;margin-top:2rem;letter-spacing:.1em}
+.closing-filter-wrap{
+  position:absolute;
+  inset:-30px;
+  filter:url(#water-closing);
+}
+.closing-filter-bg{
+  position:absolute;inset:0;
+  background-image:url('DE_TURIZAM9.png');
+  background-size:80%;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-color:#0a1208;
+}
+.closing-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(10,10,8,.6) 0%,rgba(10,10,8,.5) 50%,rgba(10,10,8,.75) 100%);
+  z-index:2;
+}
+.closing-content{
+  position:relative;
+  z-index:3;
+  text-align:center;
+  padding:6rem 3rem;
+}
+.closing-nice{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#fff;line-height:1.1}
+.closing-emoji{font-size:3.5rem;margin:1rem 0;display:block;animation:sunPulse 2.5s ease-in-out infinite}
+.closing-surprise{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#d4520a;line-height:1.1}
+.closing-contact{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:2.5rem;letter-spacing:.1em}
 
 /* ── success ── */
 .success{display:none;padding:6rem 3rem;text-align:center;background:rgba(255,255,255,.97);opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s;position:relative;z-index:10;color:#1a1a18}
@@ -248,11 +205,16 @@ body{
 </head>
 <body>
 
+<!-- SVG filteri — jedan za hero, jedan za closing -->
 <svg width="0" height="0" style="position:absolute;pointer-events:none">
   <defs>
-    <filter id="water" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-      <feTurbulence id="turb" type="turbulence" baseFrequency="0.012 0.008" numOctaves="4" seed="3" result="noise"/>
+    <filter id="water-hero" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence id="turb-hero" type="turbulence" baseFrequency="0.012 0.008" numOctaves="4" seed="3" result="noise"/>
       <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="water-closing" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence id="turb-closing" type="turbulence" baseFrequency="0.010 0.007" numOctaves="4" seed="7" result="noise2"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise2" scale="5" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
   </defs>
 </svg>
@@ -412,11 +374,18 @@ body{
 </div>
 </div>
 
+<!-- closing s DE_TURIZAM9 i mreškanjem -->
 <div class="closing">
-  <div class="closing-nice">Have a nice summer.</div>
-  <span class="closing-emoji">🏖️</span>
-  <div class="closing-surprise">Be ready for a surprise.</div>
-  <p class="closing-contact">esgfilms.eu · info@esgfilms.eu</p>
+  <div class="closing-filter-wrap">
+    <div class="closing-filter-bg"></div>
+  </div>
+  <div class="closing-overlay"></div>
+  <div class="closing-content">
+    <div class="closing-nice">Have a nice summer.</div>
+    <span class="closing-emoji">🏖️</span>
+    <div class="closing-surprise">Be ready for a surprise.</div>
+    <p class="closing-contact">esgfilms.eu · info@esgfilms.eu</p>
+  </div>
 </div>
 
 <div class="success" id="successMsg">
@@ -431,20 +400,25 @@ body{
 </footer>
 
 <script>
-/* ── SVG turbulence na hero ── */
-const turb = document.getElementById('turb');
+/* ── SVG turbulence — hero i closing neovisno ── */
+const turbHero = document.getElementById('turb-hero');
+const turbClosing = document.getElementById('turb-closing');
 let phase = 0;
 function animateWater() {
   phase += 0.0008;
   const bfx = 0.012 + Math.sin(phase * 1.3) * 0.003;
   const bfy = 0.008 + Math.cos(phase * 0.9) * 0.002;
-  turb.setAttribute('baseFrequency', bfx.toFixed(5) + ' ' + bfy.toFixed(5));
-  turb.setAttribute('seed', (3 + Math.sin(phase * 0.4) * 2).toFixed(3));
+  turbHero.setAttribute('baseFrequency', bfx.toFixed(5) + ' ' + bfy.toFixed(5));
+  turbHero.setAttribute('seed', (3 + Math.sin(phase * 0.4) * 2).toFixed(3));
+  const bfx2 = 0.010 + Math.sin(phase * 1.1 + 1) * 0.003;
+  const bfy2 = 0.007 + Math.cos(phase * 0.8 + 0.5) * 0.002;
+  turbClosing.setAttribute('baseFrequency', bfx2.toFixed(5) + ' ' + bfy2.toFixed(5));
+  turbClosing.setAttribute('seed', (7 + Math.sin(phase * 0.3 + 2) * 2).toFixed(3));
   requestAnimationFrame(animateWater);
 }
 animateWater();
 
-/* ── circular ripple ── */
+/* ── ripple ── */
 function spawnRipple(el, e) {
   const rect = el.getBoundingClientRect();
   const size = Math.max(rect.width, rect.height);
