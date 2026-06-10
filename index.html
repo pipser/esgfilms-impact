@@ -11,52 +11,29 @@
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-color:#0e1a10}
 
-/* ── nav ── */
-.nav{background:#1c1c1a;padding:.75rem 3rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+/* ── nav — 25% smaller ── */
+.nav{background:#1c1c1a;padding:.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .nav-logo a{display:block;transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
 .nav-logo a:hover{transform:scale(1.06) perspective(300px) translateZ(4px)}
-.nav-logo img{height:120px;width:auto;display:block;filter:brightness(0) invert(1)}
+.nav-logo img{height:88px;width:auto;display:block;filter:brightness(0) invert(1)}
 .nav-url{font-size:.6rem;color:#555;letter-spacing:.12em;text-transform:uppercase}
 
 /* ── hero ── */
 .hero{position:relative;overflow:hidden;min-height:520px}
 .hero-filter-wrap{position:absolute;inset:-30px;filter:url(#water-hero)}
-.hero-filter-bg{
-  position:absolute;inset:0;
-  background-image:url('DE_TURIZAM7.png');
-  background-size:cover;
-  background-position:center top; /* gornji dio uvijek vidljiv — plaža i suncobrani */
-}
+.hero-filter-bg{position:absolute;inset:0;background-image:url('DE_TURIZAM7.png');background-size:cover;background-position:center top}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.45) 0%,rgba(10,10,8,.3) 50%,rgba(10,10,8,.9) 100%);z-index:2}
 .hero-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,#d4520a 40%,transparent);z-index:4}
 .hero-content{position:relative;z-index:3;padding:4rem 3rem 5rem}
 
-/* hero layout — side by side na wide, stack na mobile */
-.hero-inner{
-  display:flex;
-  align-items:center;
-  gap:4rem;
-  max-width:1100px;
-}
-.hero-eyebrow{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3.5rem,7vw,6rem);
-  letter-spacing:.04em;
-  line-height:.95;
-  color:#fff;
-  flex-shrink:0;
-}
+.hero-inner{display:flex;align-items:center;gap:4rem;max-width:1100px}
+.hero-eyebrow{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,6rem);letter-spacing:.04em;line-height:.95;color:#fff;flex-shrink:0}
 .hero-eyebrow .line{display:block}
 .hero-eyebrow .orange{color:#d4520a}
+.hero-text{flex:1;min-width:0}
+.hero-sub{font-size:1.2rem;color:rgba(255,255,255,.85);line-height:1.75;font-weight:300;margin-bottom:.85rem}
+.hero-sub2{font-size:1rem;color:rgba(255,255,255,.62);line-height:1.8;font-weight:300}
 
-.hero-text{
-  flex:1;
-  min-width:0;
-}
-.hero-sub{font-size:1.25rem;color:rgba(255,255,255,.82);line-height:1.75;font-weight:300;margin-bottom:1rem}
-.hero-sub2{font-size:1.25rem;color:rgba(255,255,255,.82);line-height:1.75;font-weight:300}
-
-/* stack na mobile */
 @media(max-width:680px){
   .hero-inner{flex-direction:column;gap:2rem;align-items:flex-start}
   .hero-text{width:100%}
@@ -94,8 +71,8 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .input::placeholder{color:#ccc}
 
 .brief-question{margin-bottom:2.5rem}
-.brief-q-label{font-size:.78rem;color:#1a1a18;font-weight:500;margin-bottom:1rem;line-height:1.5}
-.brief-q-label em{color:#999;font-style:normal;font-weight:300}
+.brief-q-label{font-size:.82rem;color:#1a1a18;font-weight:500;margin-bottom:.35rem;line-height:1.5}
+.brief-q-sublabel{font-size:.72rem;color:#999;font-weight:300;margin-bottom:1rem;font-style:italic}
 
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
 .choice{display:flex;align-items:center;gap:.65rem;padding:.75rem .9rem;background:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,1);border-radius:3px;cursor:pointer;font-size:.8rem;color:#666;user-select:none;line-height:1.4;transition:border-color .2s,background .2s,transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(26,26,24,.08)}
@@ -111,6 +88,9 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .textarea:focus{border-color:#d4520a;box-shadow:0 0 0 1px #d4520a}
 .textarea::placeholder{color:#ccc}
 .textarea-hint{font-size:.67rem;color:#bbb;line-height:1.6;margin-top:.4rem}
+
+.url-row{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:.5rem}
+.url-note{font-size:.67rem;color:#bbb;margin-top:.35rem;line-height:1.5}
 
 .date-row{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem 3rem}
 .date-input{background:rgba(255,255,255,.9);border:1.5px solid rgba(255,255,255,1);border-radius:2px;color:#1a1a18;padding:.6rem .75rem;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;color-scheme:light;cursor:pointer;width:100%;box-shadow:0 0 0 1px rgba(26,26,24,.1)}
@@ -130,32 +110,14 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .sun-pulse{font-size:1.2rem;animation:sunPulse 2s ease-in-out infinite;display:inline-block}
 @keyframes sunPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
 
-/* ── closing — DE_TURIZAM9, bez turbulence, donji dio fotografije ── */
-.closing{
-  position:relative;
-  overflow:hidden;
-  min-height:500px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:10;
-}
-.closing-bg{
-  position:absolute;inset:0;
-  background-image:url('DE_TURIZAM9.png');
-  background-size:cover;
-  background-position:center bottom; /* donji dio — stolice i natpis */
-}
-.closing-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(10,10,8,.55) 0%,rgba(10,10,8,.4) 50%,rgba(10,10,8,.65) 100%);
-  z-index:2;
-}
+/* ── closing ── */
+.closing{position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;justify-content:center;z-index:10}
+.closing-bg{position:absolute;inset:0;background-image:url('DE_TURIZAM9.png');background-size:cover;background-position:center bottom}
+.closing-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.55) 0%,rgba(10,10,8,.4) 50%,rgba(10,10,8,.65) 100%);z-index:2}
 .closing-content{position:relative;z-index:3;text-align:center;padding:6rem 3rem}
 .closing-nice{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#fff;line-height:1.1}
-.closing-emoji{font-size:3.5rem;margin:1rem 0;display:block;animation:sunPulse 2.5s ease-in-out infinite}
-.closing-surprise{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#d4520a;line-height:1.1}
-.closing-contact{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:2.5rem;letter-spacing:.1em}
+.closing-nice .beach-emoji{font-size:clamp(2rem,5vw,4rem);animation:sunPulse 2.5s ease-in-out infinite;display:inline-block;margin-left:.3em;vertical-align:middle}
+.closing-surprise{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#d4520a;line-height:1.1;margin-top:.15em}
 
 /* ── success ── */
 .success{display:none;padding:6rem 3rem;text-align:center;background:rgba(255,255,255,.97);opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s;position:relative;z-index:10;color:#1a1a18}
@@ -172,7 +134,6 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 </head>
 <body>
 
-<!-- SVG filter samo za hero -->
 <svg width="0" height="0" style="position:absolute;pointer-events:none">
   <defs>
     <filter id="water-hero" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
@@ -192,9 +153,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 </nav>
 
 <div class="hero">
-  <div class="hero-filter-wrap">
-    <div class="hero-filter-bg"></div>
-  </div>
+  <div class="hero-filter-wrap"><div class="hero-filter-bg"></div></div>
   <div class="hero-overlay"></div>
   <div class="hero-line"></div>
   <div class="hero-content">
@@ -215,6 +174,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 <div class="form-outer" id="formOuter">
 <div class="form-inner">
 
+  <!-- STEP 1 -->
   <div class="step">
     <div class="step-label">Step 1 of 4</div>
     <div class="step-title">Your ESG report</div>
@@ -230,65 +190,80 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
     <div class="or-divider">or paste a link</div>
     <span class="input-label">Public URL to your ESG report</span>
     <input class="input" type="url" id="reportUrl" name="reportUrl" placeholder="https://"/>
+    <div class="url-note">website, investor portal, Drive link...</div>
   </div>
 
+  <!-- STEP 2 -->
   <div class="step">
     <div class="step-label">Step 2 of 4</div>
     <div class="step-title">Quick briefing</div>
-    <p class="step-desc">Five minutes. No jargon. This helps us prepare something actually useful.</p>
+    <p class="step-desc">Four questions. This is where the real work starts.</p>
 
     <div class="brief-question">
-      <div class="brief-q-label">a) For whom is this ESG communication primarily intended? <em>Select all that apply.</em></div>
+      <div class="brief-q-label">a) Where does your ESG communication hit a wall?</div>
+      <div class="brief-q-sublabel">Select one — the biggest friction point.</div>
       <div class="choices">
-        <label class="choice"><input type="checkbox" name="audience" value="investors"/> Investors &amp; shareholders</label>
-        <label class="choice"><input type="checkbox" name="audience" value="employees"/> Employees &amp; internal teams</label>
-        <label class="choice"><input type="checkbox" name="audience" value="customers"/> Customers &amp; general public</label>
-        <label class="choice"><input type="checkbox" name="audience" value="regulators"/> Regulators &amp; industry bodies</label>
-        <label class="choice"><input type="checkbox" name="audience" value="media"/> Media &amp; press</label>
-        <label class="choice"><input type="checkbox" name="audience" value="notsure"/> Not sure yet</label>
+        <label class="choice"><input type="radio" name="wall" value="employees"/> Employees don't understand what ESG means for them</label>
+        <label class="choice"><input type="radio" name="wall" value="extrawork"/> ESG is seen as extra work, not shared value</label>
+        <label class="choice"><input type="radio" name="wall" value="invisible"/> Our achievements aren't visible outside the ESG team</label>
+        <label class="choice"><input type="radio" name="wall" value="leadership"/> Leadership isn't aligned on ESG priorities</label>
+        <label class="choice"><input type="radio" name="wall" value="nothing"/> We communicate but nothing seems to land</label>
+        <label class="choice"><input type="radio" name="wall" value="notstarted"/> We haven't started communicating yet</label>
       </div>
     </div>
 
     <div class="brief-question">
-      <div class="brief-q-label">b) What is the primary purpose of this communication? <em>Select one.</em></div>
+      <div class="brief-q-label">b) Who is the primary audience you want to reach?</div>
+      <div class="brief-q-sublabel">Select one.</div>
       <div class="choices">
-        <label class="choice"><input type="radio" name="purpose" value="brand"/> Build brand reputation</label>
-        <label class="choice"><input type="radio" name="purpose" value="internal"/> Internal engagement</label>
-        <label class="choice"><input type="radio" name="purpose" value="investors"/> Attract investors</label>
-        <label class="choice"><input type="radio" name="purpose" value="regulatory"/> Meet regulatory requirements</label>
-        <label class="choice choice-full"><input type="radio" name="purpose" value="undefined"/> We haven't defined it yet</label>
+        <label class="choice"><input type="radio" name="audience" value="employees"/> Employees &amp; internal teams</label>
+        <label class="choice"><input type="radio" name="audience" value="clevel"/> C-level &amp; board</label>
+        <label class="choice"><input type="radio" name="audience" value="investors"/> Investors &amp; shareholders</label>
+        <label class="choice"><input type="radio" name="audience" value="customers"/> Customers &amp; general public</label>
+        <label class="choice"><input type="radio" name="audience" value="media"/> Media</label>
       </div>
     </div>
 
     <div class="brief-question">
-      <div class="brief-q-label">c) Where do you plan to use this content? <em>Select all that apply.</em></div>
+      <div class="brief-q-label">c) What is the purpose of this film?</div>
+      <div class="brief-q-sublabel">Select one.</div>
       <div class="choices">
-        <label class="choice"><input type="checkbox" name="channels" value="website"/> Company website</label>
-        <label class="choice"><input type="checkbox" name="channels" value="social"/> Social media</label>
-        <label class="choice"><input type="checkbox" name="channels" value="annual"/> Annual report / investor materials</label>
-        <label class="choice"><input type="checkbox" name="channels" value="internal"/> Internal channels</label>
-        <label class="choice"><input type="checkbox" name="channels" value="events"/> Events &amp; conferences</label>
-        <label class="choice"><input type="checkbox" name="channels" value="notsure"/> Not sure yet</label>
+        <label class="choice"><input type="radio" name="purpose" value="promo"/> Promotion <em style="color:#bbb;font-style:normal;font-size:.72rem">(go sell)</em></label>
+        <label class="choice"><input type="radio" name="purpose" value="education"/> Education <em style="color:#bbb;font-style:normal;font-size:.72rem">(go teach)</em></label>
+        <label class="choice"><input type="radio" name="purpose" value="brand"/> Brand reputation <em style="color:#bbb;font-style:normal;font-size:.72rem">(go shine)</em></label>
+        <label class="choice choice-full"><input type="radio" name="purpose" value="shift"/> Change perception of ESG <em style="color:#bbb;font-style:normal;font-size:.72rem">(go shift)</em></label>
       </div>
     </div>
 
     <div class="brief-question">
-      <div class="brief-q-label">d) Do you have existing ESG communication materials? <em>Select one.</em></div>
+      <div class="brief-q-label">d) Do you have a preferred format?</div>
+      <div class="brief-q-sublabel">Select one — or leave it to us.</div>
       <div class="choices">
-        <label class="choice"><input type="radio" name="existing" value="video"/> Yes, we have videos or films</label>
-        <label class="choice"><input type="radio" name="existing" value="written"/> Yes, written content only</label>
-        <label class="choice"><input type="radio" name="existing" value="website"/> We have a website section</label>
-        <label class="choice"><input type="radio" name="existing" value="none"/> No, this would be a first</label>
+        <label class="choice"><input type="radio" name="format" value="fiction"/> Short fiction <em style="color:#bbb;font-style:normal;font-size:.72rem">(go crazy)</em></label>
+        <label class="choice"><input type="radio" name="format" value="documentary"/> Documentary <em style="color:#bbb;font-style:normal;font-size:.72rem">(go true)</em></label>
+        <label class="choice"><input type="radio" name="format" value="podcast"/> Podcast <em style="color:#bbb;font-style:normal;font-size:.72rem">(go talk)</em></label>
+        <label class="choice"><input type="radio" name="format" value="series"/> Series of shorts <em style="color:#bbb;font-style:normal;font-size:.72rem">(go quick)</em></label>
+        <label class="choice"><input type="radio" name="format" value="promo"/> Promo film <em style="color:#bbb;font-style:normal;font-size:.72rem">(go clear)</em></label>
+        <label class="choice"><input type="radio" name="format" value="animation"/> Animation <em style="color:#bbb;font-style:normal;font-size:.72rem">(go wild)</em></label>
+        <label class="choice choice-full"><input type="radio" name="format" value="surprise"/> No preference — surprise us</label>
       </div>
     </div>
 
     <div class="brief-question">
-      <div class="brief-q-label">e) Is there a specific story or result you'd like to highlight? <em>Optional — but the most valuable thing you can share with us.</em></div>
-      <textarea class="textarea" id="story" placeholder="e.g. Our carbon reduction journey, a community project, supply chain transformation..."></textarea>
-      <div class="textarea-hint">The more specific, the better. No need to be formal.</div>
+      <div class="brief-q-label">e) Is there a specific story or result you'd like to tell?</div>
+      <div class="brief-q-sublabel">The most valuable thing you can share with us.</div>
+      <textarea class="textarea" id="story" placeholder="e.g. We finally got ESG into our board strategy. Our employees don't know yet."></textarea>
+    </div>
+
+    <div class="brief-question">
+      <div class="brief-q-label">f) Is there a video or campaign that inspired you?</div>
+      <div class="brief-q-sublabel">Optional — paste a link and tell us what you liked about it.</div>
+      <input class="input" type="url" id="inspoUrl" name="inspoUrl" placeholder="https://" style="margin-bottom:1rem"/>
+      <textarea class="textarea" id="inspoNote" placeholder="What caught your attention — style, tone, format, message..."></textarea>
     </div>
   </div>
 
+  <!-- STEP 3 -->
   <div class="step">
     <div class="step-label">Step 3 of 4</div>
     <div class="step-title">Your timeline</div>
@@ -306,6 +281,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
     </div>
   </div>
 
+  <!-- STEP 4 -->
   <div class="step">
     <div class="step-label">Step 4 of 4</div>
     <div class="step-title">Where do we send it?</div>
@@ -341,14 +317,12 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 </div>
 </div>
 
-<!-- closing — DE_TURIZAM9, bez turbulence, donji dio fotografije -->
 <div class="closing">
   <div class="closing-bg"></div>
   <div class="closing-overlay"></div>
   <div class="closing-content">
-    <div class="closing-nice">Have a nice summer. 🏖️</div>
+    <div class="closing-nice">Have a nice summer.<span class="beach-emoji">🏖️</span></div>
     <div class="closing-surprise">Be ready for a surprise.</div>
-    <p class="closing-contact">esgfilms.eu · info@esgfilms.eu</p>
   </div>
 </div>
 
@@ -364,65 +338,57 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 </footer>
 
 <script>
-/* ── SVG turbulence — samo hero ── */
 const turbHero = document.getElementById('turb-hero');
 let phase = 0;
 function animateWater() {
   phase += 0.0008;
-  const bfx = 0.012 + Math.sin(phase * 1.3) * 0.003;
-  const bfy = 0.008 + Math.cos(phase * 0.9) * 0.002;
-  turbHero.setAttribute('baseFrequency', bfx.toFixed(5) + ' ' + bfy.toFixed(5));
-  turbHero.setAttribute('seed', (3 + Math.sin(phase * 0.4) * 2).toFixed(3));
+  turbHero.setAttribute('baseFrequency', (0.012+Math.sin(phase*1.3)*0.003).toFixed(5)+' '+(0.008+Math.cos(phase*0.9)*0.002).toFixed(5));
+  turbHero.setAttribute('seed', (3+Math.sin(phase*0.4)*2).toFixed(3));
   requestAnimationFrame(animateWater);
 }
 animateWater();
 
-/* ── ripple ── */
 function spawnRipple(el, e) {
-  const rect = el.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-  const x = e.clientX - rect.left - size/2;
-  const y = e.clientY - rect.top - size/2;
-  const r = document.createElement('span');
-  r.className = 'ripple-circle';
-  r.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+x+'px;top:'+y+'px';
+  const rect=el.getBoundingClientRect();
+  const size=Math.max(rect.width,rect.height);
+  const r=document.createElement('span');
+  r.className='ripple-circle';
+  r.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(e.clientX-rect.left-size/2)+'px;top:'+(e.clientY-rect.top-size/2)+'px';
   el.appendChild(r);
-  setTimeout(() => r.remove(), 700);
+  setTimeout(()=>r.remove(),700);
 }
 
-document.querySelectorAll('.choice').forEach(el => {
-  el.addEventListener('click', e => {
-    spawnRipple(el, e);
-    const inp = el.querySelector('input');
-    if (inp.type === 'radio') {
-      document.querySelectorAll('input[name="'+inp.name+'"]').forEach(r => r.closest('.choice').classList.remove('picked'));
-    }
-    setTimeout(() => el.classList.toggle('picked', inp.checked), 0);
+document.querySelectorAll('.choice').forEach(el=>{
+  el.addEventListener('click',e=>{
+    spawnRipple(el,e);
+    const inp=el.querySelector('input');
+    if(inp.type==='radio') document.querySelectorAll('input[name="'+inp.name+'"]').forEach(r=>r.closest('.choice').classList.remove('picked'));
+    setTimeout(()=>el.classList.toggle('picked',inp.checked),0);
   });
 });
 
-document.getElementById('btnSubmit').addEventListener('click', function(e) {
-  spawnRipple(this, e);
-  setTimeout(() => {
-    document.getElementById('formOuter').style.display = 'none';
-    const s = document.getElementById('successMsg');
-    s.style.display = 'block';
-    requestAnimationFrame(() => requestAnimationFrame(() => s.classList.add('show')));
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }, 300);
+document.getElementById('btnSubmit').addEventListener('click',function(e){
+  spawnRipple(this,e);
+  setTimeout(()=>{
+    document.getElementById('formOuter').style.display='none';
+    const s=document.getElementById('successMsg');
+    s.style.display='block';
+    requestAnimationFrame(()=>requestAnimationFrame(()=>s.classList.add('show')));
+    window.scrollTo({top:0,behavior:'smooth'});
+  },300);
 });
 
-document.getElementById('email').addEventListener('input', function() {
-  if (this.value.includes('@')) document.getElementById('submitArea').classList.add('show');
+document.getElementById('email').addEventListener('input',function(){
+  if(this.value.includes('@')) document.getElementById('submitArea').classList.add('show');
 });
 
-document.getElementById('repFile').addEventListener('change', function() {
-  if (!this.files[0]) return;
-  document.getElementById('fname').textContent = this.files[0].name;
-  document.getElementById('fname').style.display = 'block';
-  document.getElementById('fok').style.display = 'block';
-  document.getElementById('uploadMain').style.display = 'none';
-  document.getElementById('uploadSub').style.display = 'none';
+document.getElementById('repFile').addEventListener('change',function(){
+  if(!this.files[0])return;
+  document.getElementById('fname').textContent=this.files[0].name;
+  document.getElementById('fname').style.display='block';
+  document.getElementById('fok').style.display='block';
+  document.getElementById('uploadMain').style.display='none';
+  document.getElementById('uploadSub').style.display='none';
   document.getElementById('dropZone').classList.add('has-file');
 });
 </script>
