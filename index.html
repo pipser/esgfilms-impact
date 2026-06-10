@@ -12,7 +12,7 @@ html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-color:#0e1a10}
 
 /* ── nav — 25% smaller ── */
-.nav{background:#1c1c1a;padding:.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav{background:#1c1c1a;padding:.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .nav-logo a{display:block;transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
 .nav-logo a:hover{transform:scale(1.06) perspective(300px) translateZ(4px)}
 .nav-logo img{height:106px;width:auto;display:block;filter:brightness(0) invert(1)}
@@ -45,8 +45,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .step{padding:4rem 0;border-top:1px solid rgba(26,26,24,.08)}
 .step:first-child{border-top:none;padding-top:4rem}
 .step-label{font-size:.58rem;color:#d4520a;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.6rem;font-weight:500}
-.step-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em;color:#1a1a18;line-height:1;margin-bottom:.5rem;display:inline-block;transition:transform .22s cubic-bezier(.34,1.56,.64,1);cursor:default}
-.step-title:hover{transform:scale(1.06) perspective(200px) translateZ(5px)}
+.step-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.08em;color:#1a1a18;line-height:1;margin-bottom:.5rem;display:inline-block;cursor:default}
 .step-desc{font-size:.78rem;color:#999;font-weight:300;line-height:1.7;margin-bottom:2rem}
 
 .upload-zone{border:1.5px solid rgba(26,26,24,.15);border-radius:3px;padding:3rem 2rem;display:flex;flex-direction:column;align-items:center;gap:.55rem;cursor:pointer;position:relative;text-align:center;background:rgba(255,255,255,.8);transition:border-color .3s,background .3s,transform .22s cubic-bezier(.34,1.56,.64,1);margin-bottom:1.5rem}
@@ -74,7 +73,9 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .brief-q-sublabel{font-size:.72rem;color:#999;font-weight:300;margin-bottom:1rem;font-style:italic}
 
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
-.choice{display:flex;align-items:center;gap:.65rem;padding:.75rem .9rem;background:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,1);border-radius:3px;cursor:pointer;font-size:.8rem;color:#666;user-select:none;line-height:1.4;transition:border-color .2s,background .2s,transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(26,26,24,.08)}
+.choice{display:flex;align-items:flex-start;gap:.65rem;padding:.75rem .9rem;background:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,1);border-radius:3px;cursor:pointer;font-size:.8rem;color:#666;user-select:none;line-height:1.4;transition:border-color .2s,background .2s,transform .22s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(26,26,24,.08)}
+.choice-inner{display:flex;flex-direction:column;gap:.15rem}
+.choice-tag{font-size:.65rem;color:#bbb;font-style:italic;line-height:1}
 .choice:hover{border-color:rgba(212,82,10,.6);color:#1a1a18;background:rgba(212,82,10,.04);transform:scale(1.02) perspective(400px) translateZ(3px)}
 .choice.picked{border-color:#d4520a;background:rgba(212,82,10,.06);color:#1a1a18;box-shadow:0 0 0 1px #d4520a}
 .choice input{accent-color:#d4520a;width:13px;height:13px;flex-shrink:0}
@@ -125,10 +126,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .success h2 span{color:#d4520a}
 .success p{font-size:.88rem;color:#888;line-height:1.9;font-weight:300}
 
-/* ── footer ── */
-.footer{padding:1.25rem 3rem;display:flex;align-items:center;justify-content:space-between;background:#1c1c1a;flex-wrap:wrap;gap:1rem;position:relative;z-index:10}
-.footer-l{font-size:.62rem;color:#444;letter-spacing:.05em}
-.footer-r{font-size:.62rem;color:#333;font-style:italic}
+
 </style>
 </head>
 <body>
@@ -163,7 +161,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
         <span class="line"><span class="orange">G</span>ET READY.</span>
       </div>
       <div class="hero-text">
-        <p class="hero-sub">We think your ESG report is the foundation of a great story. Let us brainstorm while you chill.</p>
+        <p class="hero-sub">We think your <span style="color:#d4520a">ESG report</span> is the foundation of a great story. <span style="color:#d4520a">Let us brainstorm while you chill.</span></p>
       </div>
     </div>
   </div>
@@ -226,10 +224,10 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       <div class="brief-q-label">c) What is the purpose of this film?</div>
       <div class="brief-q-sublabel">Select one.</div>
       <div class="choices">
-        <label class="choice"><input type="radio" name="purpose" value="promo"/> Promotion <em style="color:#bbb;font-style:normal;font-size:.72rem">(go sell)</em></label>
-        <label class="choice"><input type="radio" name="purpose" value="education"/> Education <em style="color:#bbb;font-style:normal;font-size:.72rem">(go teach)</em></label>
-        <label class="choice"><input type="radio" name="purpose" value="brand"/> Brand reputation <em style="color:#bbb;font-style:normal;font-size:.72rem">(go shine)</em></label>
-        <label class="choice choice-full"><input type="radio" name="purpose" value="shift"/> Change perception of ESG <em style="color:#bbb;font-style:normal;font-size:.72rem">(go shift)</em></label>
+        <label class="choice"><input type="radio" name="purpose" value="promo"/><div class="choice-inner"><span>Promotion</span><span class="choice-tag">go sell</span></div></label>
+        <label class="choice"><input type="radio" name="purpose" value="education"/><div class="choice-inner"><span>Education</span><span class="choice-tag">go teach</span></div></label>
+        <label class="choice"><input type="radio" name="purpose" value="brand"/><div class="choice-inner"><span>Brand reputation</span><span class="choice-tag">go shine</span></div></label>
+        <label class="choice choice-full"><input type="radio" name="purpose" value="shift"/><div class="choice-inner"><span>Change perception of ESG</span><span class="choice-tag">go shift</span></div></label>
       </div>
     </div>
 
@@ -237,12 +235,12 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       <div class="brief-q-label">d) Do you have a preferred format?</div>
       <div class="brief-q-sublabel">Select one — or leave it to us.</div>
       <div class="choices">
-        <label class="choice"><input type="radio" name="format" value="fiction"/> Short fiction <em style="color:#bbb;font-style:normal;font-size:.72rem">(go crazy)</em></label>
-        <label class="choice"><input type="radio" name="format" value="documentary"/> Documentary <em style="color:#bbb;font-style:normal;font-size:.72rem">(go true)</em></label>
-        <label class="choice"><input type="radio" name="format" value="podcast"/> Podcast <em style="color:#bbb;font-style:normal;font-size:.72rem">(go talk)</em></label>
-        <label class="choice"><input type="radio" name="format" value="series"/> Series of shorts <em style="color:#bbb;font-style:normal;font-size:.72rem">(go quick)</em></label>
-        <label class="choice"><input type="radio" name="format" value="promo"/> Promo film <em style="color:#bbb;font-style:normal;font-size:.72rem">(go clear)</em></label>
-        <label class="choice"><input type="radio" name="format" value="animation"/> Animation <em style="color:#bbb;font-style:normal;font-size:.72rem">(go wild)</em></label>
+        <label class="choice"><input type="radio" name="format" value="fiction"/><div class="choice-inner"><span>Short fiction</span><span class="choice-tag">go crazy</span></div></label>
+        <label class="choice"><input type="radio" name="format" value="documentary"/><div class="choice-inner"><span>Documentary</span><span class="choice-tag">go true</span></div></label>
+        <label class="choice"><input type="radio" name="format" value="podcast"/><div class="choice-inner"><span>Podcast</span><span class="choice-tag">go talk</span></div></label>
+        <label class="choice"><input type="radio" name="format" value="series"/><div class="choice-inner"><span>Series of shorts</span><span class="choice-tag">go quick</span></div></label>
+        <label class="choice"><input type="radio" name="format" value="promo"/><div class="choice-inner"><span>Promo film</span><span class="choice-tag">go clear</span></div></label>
+        <label class="choice"><input type="radio" name="format" value="animation"/><div class="choice-inner"><span>Animation</span><span class="choice-tag">go wild</span></div></label>
         <label class="choice choice-full"><input type="radio" name="format" value="surprise"/> No preference — surprise us</label>
       </div>
     </div>
@@ -325,10 +323,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
   <p>ESG Films will review your report and prepare an initial communication brief.<br>No strings attached — just a starting point for a conversation.</p>
 </div>
 
-<footer class="footer">
-  <div class="footer-l">ESG Films d.o.o. · Mohorovičićeva 22, Zagreb · info@esgfilms.eu</div>
-  <div class="footer-r">Making Impact Visible</div>
-</footer>
+
 
 <script>
 const turbHero = document.getElementById('turb-hero');
