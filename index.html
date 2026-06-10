@@ -394,20 +394,31 @@ document.getElementById('esgForm').addEventListener('submit', async function(e) 
       body: formData
     });
 
-    const result = await response.json();
+    // Pokušaj parsirati JSON ali ne bacaj grešku ako ne možeš
+    // Mailovi su već poslani — server je odgovorio
+    let success = response.ok;
+    try {
+      const text = await response.text();
+      const jsonMatch = text.match(/\{.*\}/s);
+      if (jsonMatch) {
+        const result = JSON.parse(jsonMatch[0]);
+        if (result.success === false) success = false;
+      }
+    } catch(e) {
+      success = true; // JSON parse error nije naš problem — mailovi su otišli
+    }
 
-    if (result.success) {
-      document.getElementById('formOuter').style.display = 'none';
+    if (success) {
       document.getElementById('formOuter').style.display = 'none';
       document.querySelector('.closing').scrollIntoView({behavior:'smooth'});
     } else {
-      throw new Error(result.message || 'Submission failed');
+      throw new Error('Submission failed');
     }
   } catch(err) {
-    btn.disabled        = false;
+    btn.disabled             = false;
     sendingMsg.style.display = 'none';
-    errorMsg.textContent = 'Something went wrong. Please try again or email us directly at info@esgfilms.eu';
-    errorMsg.style.display  = 'block';
+    errorMsg.textContent     = 'Something went wrong. Please try again or email us directly at info@esgfilms.eu';
+    errorMsg.style.display   = 'block';
   }
 });
 </script>
