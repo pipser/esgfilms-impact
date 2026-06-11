@@ -269,6 +269,13 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       <input class="input" type="url" id="inspoUrl" name="inspoUrl" placeholder="https://" style="margin-bottom:1rem"/>
       <textarea class="textarea" id="inspoNote" name="inspoNote" placeholder="What caught your attention — style, tone, format, message..."></textarea>
     </div>
+
+    <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(26,26,24,.08)">
+      <label class="checkbox-line">
+        <input type="checkbox" id="moreContext" name="moreContext" value="yes"/>
+        There's more context to share — I'm happy for ESG Films to reach out.
+      </label>
+    </div>
   </div>
 
   <div class="step">
@@ -300,14 +307,6 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
         <span class="input-label">Email address *</span>
         <input class="input" type="email" id="email" name="email" required/>
       </div>
-    </div>
-    <label class="checkbox-line" id="followupLabel">
-      <input type="checkbox" id="followup" name="followup" value="yes" onchange="togglePhone(this)"/>
-      I'm happy for ESG Films to follow up with a short call.
-    </label>
-    <div id="phoneWrap" style="display:none;margin-top:1.5rem;max-width:320px">
-      <span class="input-label">Phone number</span>
-      <input class="input" type="tel" id="phone" name="phone" placeholder="+385 ..."/>
     </div>
   </div>
 
@@ -415,15 +414,13 @@ document.getElementById('repFile').addEventListener('change',function(){
   document.getElementById('dropZone').classList.add('has-file');
 });
 
-/* ── Toggle phone field ── */
-function togglePhone(cb) {
-  const wrap = document.getElementById('phoneWrap');
-  wrap.style.display = cb.checked ? 'block' : 'none';
-  if (!cb.checked) document.getElementById('phone').value = '';
-}
-
 /* ── Min date on return date ── */
-document.getElementById('returnDate').min = new Date().toISOString().split('T')[0];
+const today     = new Date();
+const minByDays = new Date(today);
+minByDays.setDate(today.getDate() + 14);
+const minByDate = new Date('2026-07-10');
+const minDate   = minByDays > minByDate ? minByDays : minByDate;
+document.getElementById('returnDate').min = minDate.toISOString().split('T')[0];
 
 /* ── Progress bar ── */
 const steps = document.querySelectorAll('.step');
@@ -471,11 +468,6 @@ function validateForm() {
   const email = document.getElementById('email').value.trim();
   if (!name)  return 'Please enter your name.';
   if (!email) return 'Please enter your email address.';
-
-  // Phone — required only if followup checked
-  const followup = document.getElementById('followup').checked;
-  const phone    = document.getElementById('phone').value.trim();
-  if (followup && !phone) return 'Please enter your phone number so we can follow up.';
 
   return null; // all good
 }
