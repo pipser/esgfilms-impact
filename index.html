@@ -28,7 +28,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .progress-bar-fill{height:100%;width:0%;background:#d4520a;transition:width .4s ease}
 
 .hero{position:relative;overflow:hidden;min-height:600px}
-.hero-filter-wrap{position:absolute;inset:-30px;filter:url(#water-hero);will-change:transform}
+.hero-filter-wrap{position:absolute;inset:-30px;filter:url(#water-hero)}
 .hero-filter-bg{position:absolute;inset:0;background-image:url('DE_TURIZAM7.png');background-size:cover;background-position:center top}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.35) 0%,rgba(10,10,8,.2) 40%,rgba(10,10,8,.88) 100%);z-index:2}
 .hero-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,#d4520a 40%,transparent);z-index:4}
@@ -123,7 +123,6 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .closing-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.52) 0%,rgba(10,10,8,.38) 50%,rgba(10,10,8,.62) 100%);z-index:2}
 .closing-content{position:relative;z-index:3;text-align:center;padding:6rem 3rem}
 .closing-nice{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#fff;line-height:1.1}
-.closing-nice .beach-emoji{font-size:clamp(2rem,5vw,4rem);animation:sunPulse 2.5s ease-in-out infinite;display:inline-block;margin-left:.25em;vertical-align:middle}
 .closing-surprise{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:.06em;color:#d4520a;line-height:1.1;margin-top:.1em}
 
 
@@ -349,12 +348,22 @@ function animateWater() {
   waterRafId = requestAnimationFrame(animateWater);
 }
 
+const heroFilterWrap = document.querySelector('.hero-filter-wrap');
+
 const heroObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      if (!waterAnimating) { waterAnimating = true; animateWater(); }
+      if (!waterAnimating) {
+        heroFilterWrap.style.willChange = 'transform';
+        waterAnimating = true;
+        animateWater();
+      }
     } else {
-      if (waterAnimating) { waterAnimating = false; cancelAnimationFrame(waterRafId); }
+      if (waterAnimating) {
+        waterAnimating = false;
+        cancelAnimationFrame(waterRafId);
+        heroFilterWrap.style.willChange = 'auto';
+      }
     }
   });
 }, { threshold: 0.05 });
