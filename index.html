@@ -3,13 +3,29 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>summer.esgfilms.eu</title>
+<title>ESG Films — Enjoy your summer. Get ready.</title>
 <meta name="description" content="Send us your ESG report before you leave. We'll analyse it and prepare an initial communication brief — ready on your desk when you're back."/>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADwklEQVR4nM2XzWtcZRTGf8+9M2lGWk2rVfFjqwuhLgS7cFHFhWgmRZAZKChuFEQsTUDookiMC3VTmhERRPoH2LtL026ly+pC8eMfEC0o5qNWmqQz7/t08d5JWriTmQS1PZu7uO855zlfz3lfuFvFoDtuy+daub17IAb5XCvfnfJs855bgexY/xYdn241dqTk+eY7/uLVX31m6qS/TEA8S+bZ2Ww48NmsnzWfbjU833zX880f3Wm+URXM7QZ/+bNMt54BHifjU9Z12Z2ptuaImpuLg8pip3Rrbi5K2J3mFNnaBeAU8ChRh6oA16rD0Dq9GDFL4CeQvnZn6k3sD9UuvkuRHqlp7lKvH5VUBCiCP5t8mqD3MS8ibgBLmIOYjdEByAJl5f817OugV4AX3Dl6loxPdHzhCqRGU7sInp96CDhO9DHEOLAKFqgGFqpu5qE1Lc/k4FVQl4z3iP7W80dPbPbMmcm3gYvIbwE94GrS0VD71RmolhwMgRVgP7nmubJ2jDPNv8l8CPsaZjmdY+Sp2QmALSB2JIQ16vlhALphFXwd6CGZSIbwvwxABmeYMUQdI7qhV/6bAO4FVjHLZHTxaFkYAYCcmsh1ImPgDHAZYVljB0BIB4jeBywhrmIPZeHtAQhjasAYkbx0WpXa5MUOiBroYez7QH8hroI8qCCDAQiIbmDGN8EMFyWAjqAG8Bj2XiAixyqF6jEROWM5mBraTPdORAmEDdrHeP1+0F7gFrbdDgCVYP8TGUDFWeBGANEre2DUEmxaAOXp62usdyP4HwCeevA2O4N7wIC0VhoZw5tNOMQxWWJArwGpCc0DuJoVt5+CtPV6QCCjlsawkmRMGsOc6C7y1hhaObYGjeMIPOByxNRFDlh1cCIiEdIZ1cARexmxjPpEJEH/TLXsgAmdRkxsYLqInHqebjqJileADSQRy+kZQXazCwJSjTxr0A2XMeUyUgCMR98DMNo63nKMTK79wArB0zzSeI7pxZeIfABcwxwonW+b9p0CiKXzCaBGL37Ohp7V9EJH7SIg0MyFr0AvA2cx9UTDhERGuwFguXTcAxpIE4iL4Oc1s3hcJxeuePZIDRLl+Vwr1/T5PzSzeArH15C+ASZKOu6lXaDKslT3QOY91PKMbjgI+hnrI00vFFDealtFlC71+sfVLoKNKFqZ2sUPwOvuNKcwM8CTwB7EnuEZ2GKp77F/w5xk3Ic1vVD0r+VqF0EVTSZhtYvQv5brxOJ5QmMS8THwO8SfKoMdJHfkYVJl5M49ze6Gx+n/ITcB/THHktLWU8kAAAAASUVORK5CYII="/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://summer.esgfilms.eu"/>
+<meta property="og:title" content="ESG Films — Enjoy your summer. Get ready."/>
+<meta property="og:description" content="Send us your ESG report before you leave. We'll have a communication brief ready when you're back. No strings attached."/>
+<meta property="og:image" content="https://summer.esgfilms.eu/DE_TURIZAM7.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="ESG Films — Enjoy your summer. Get ready."/>
+<meta name="twitter:description" content="Send us your ESG report before you leave. We'll have a communication brief ready when you're back."/>
+<meta name="twitter:image" content="https://summer.esgfilms.eu/DE_TURIZAM7.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-color:#0e1a10}
+
+.progress-bar-wrap{position:sticky;top:0;z-index:100;height:3px;background:rgba(26,26,24,.1)}
+.progress-bar-fill{height:100%;width:0%;background:#d4520a;transition:width .4s ease}
 
 .hero{position:relative;overflow:hidden;min-height:600px}
 .hero-filter-wrap{position:absolute;inset:-30px;filter:url(#water-hero);will-change:transform}
@@ -126,6 +142,8 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 </head>
 <body>
 
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+
 <svg width="0" height="0" style="position:absolute;pointer-events:none">
   <defs>
     <filter id="water-hero" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
@@ -170,7 +188,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       <input type="file" id="repFile" name="repFile" accept=".pdf"/>
       <div class="upload-icon-wrap">📄</div>
       <div class="upload-main" id="uploadMain">Drag &amp; drop your PDF here, or <span>click to browse</span></div>
-      <div class="upload-sub" id="uploadSub">PDF — max 20 MB</div>
+      <div class="upload-sub" id="uploadSub">PDF — max 35 MB</div>
       <div class="upload-filename" id="fname"></div>
       <div class="upload-ok" id="fok">✓ File uploaded</div>
     </div>
@@ -256,7 +274,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
     <div class="date-row">
       <div>
         <span class="input-label">When are you back in the office?</span>
-        <input class="date-input" type="date" id="returnDate" name="returnDate"/>
+        <input class="date-input" type="date" id="returnDate" name="returnDate" min=""/>
       </div>
     </div>
   </div>
@@ -390,7 +408,35 @@ function togglePhone(cb) {
   if (!cb.checked) document.getElementById('phone').value = '';
 }
 
-/* ── Form submit — fire and forget ── */
+/* ── Min date on return date ── */
+document.getElementById('returnDate').min = new Date().toISOString().split('T')[0];
+
+/* ── Progress bar ── */
+const steps = document.querySelectorAll('.step');
+const progressFill = document.getElementById('progressFill');
+const totalSteps = steps.length;
+
+function updateProgress() {
+  const formTop = document.getElementById('formOuter').getBoundingClientRect().top;
+  const formBottom = document.getElementById('formOuter').getBoundingClientRect().bottom;
+  const winH = window.innerHeight;
+
+  if (formTop > winH || formBottom < 0) { progressFill.style.width = '0%'; return; }
+
+  let bestStep = 0;
+  steps.forEach((step, i) => {
+    const rect = step.getBoundingClientRect();
+    if (rect.top < winH * 0.6) bestStep = i + 1;
+  });
+
+  const pct = Math.round((bestStep / totalSteps) * 100);
+  progressFill.style.width = pct + '%';
+}
+
+window.addEventListener('scroll', updateProgress, {passive: true});
+updateProgress();
+
+/* ── Form submit ── */
 document.getElementById('esgForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -401,8 +447,8 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
   const name  = document.getElementById('contact').value.trim();
   const email = document.getElementById('email').value.trim();
   if (!name || !email) {
-    errorMsg.textContent    = 'Please fill in your name and email.';
-    errorMsg.style.display  = 'block';
+    errorMsg.textContent   = 'Please fill in your name and email.';
+    errorMsg.style.display = 'block';
     return;
   }
 
@@ -412,17 +458,35 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
 
   const formData = new FormData(this);
 
-  // Šaljemo request i odmah pokazujemo success — ne čekamo response
-  // Mailovi idu serverski, korisnik ne treba čekati potvrdu
   const xhr = new XMLHttpRequest();
   xhr.open('POST', 'https://esgfilms.eu/submit.php', true);
-  xhr.send(formData);
 
-  // Odmah success — bez obzira na response
-  setTimeout(function() {
-    document.getElementById('formOuter').style.display = 'none';
-    document.querySelector('.closing').scrollIntoView({behavior:'smooth'});
-  }, 800);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState !== 4) return;
+
+    if (xhr.status >= 200 && xhr.status < 300) {
+      // Success — scroll to closing
+      sendingMsg.style.display = 'none';
+      document.getElementById('formOuter').style.display = 'none';
+      document.querySelector('.closing').scrollIntoView({behavior:'smooth'});
+    } else {
+      // Server returned an error
+      btn.disabled             = false;
+      sendingMsg.style.display = 'none';
+      errorMsg.textContent     = 'Something went wrong. Please try again or reach us at info@esgfilms.eu';
+      errorMsg.style.display   = 'block';
+    }
+  };
+
+  xhr.onerror = function() {
+    // Network-level failure
+    btn.disabled             = false;
+    sendingMsg.style.display = 'none';
+    errorMsg.textContent     = 'Something went wrong. Please try again or reach us at info@esgfilms.eu';
+    errorMsg.style.display   = 'block';
+  };
+
+  xhr.send(formData);
 });
 </script>
 </body>
