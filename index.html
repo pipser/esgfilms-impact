@@ -12,7 +12,7 @@ html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-color:#0e1a10}
 
 .hero{position:relative;overflow:hidden;min-height:600px}
-.hero-filter-wrap{position:absolute;inset:-30px;filter:url(#water-hero)}
+.hero-filter-wrap{position:absolute;inset:-30px;filter:url(#water-hero);will-change:transform}
 .hero-filter-bg{position:absolute;inset:0;background-image:url('DE_TURIZAM7.png');background-size:cover;background-position:center top}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.35) 0%,rgba(10,10,8,.2) 40%,rgba(10,10,8,.88) 100%);z-index:2}
 .hero-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,transparent,#d4520a 40%,transparent);z-index:4}
@@ -129,7 +129,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 <svg width="0" height="0" style="position:absolute;pointer-events:none">
   <defs>
     <filter id="water-hero" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-      <feTurbulence id="turb-hero" type="turbulence" baseFrequency="0.012 0.008" numOctaves="4" seed="3" result="noise"/>
+      <feTurbulence id="turb-hero" type="turbulence" baseFrequency="0.012 0.008" numOctaves="3" seed="3" result="noise"/>
       <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
   </defs>
@@ -238,7 +238,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
     <div class="brief-question">
       <div class="brief-q-label">e) Is there a specific story or result you'd like to tell?</div>
       <div class="brief-q-sublabel">The most valuable thing you can share with us.</div>
-      <textarea class="textarea" id="story" name="story" placeholder="e.g. Our sustainability team has great results but no one outside the company knows about them."></textarea>
+      <textarea class="textarea" id="story" name="story" placeholder="e.g. We reduced emissions by 34% last year — but nobody outside our walls knows about it."></textarea>
     </div>
 
     <div class="brief-question">
@@ -310,7 +310,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
   <div class="closing-bg"></div>
   <div class="closing-overlay"></div>
   <div class="closing-content">
-    <div class="closing-nice">Have a nice summer.<span class="beach-emoji">🏖️</span></div>
+    <div class="closing-nice">Have a nice summer.</div>
     <div class="closing-surprise">Be ready for a surprise.</div>
   </div>
 </div>
@@ -320,15 +320,28 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 /* ── Water turbulence ── */
 const turbHero = document.getElementById('turb-hero');
 let phase = 0;
+let waterAnimating = false;
+let waterRafId = null;
+
 function animateWater() {
   phase += 0.0008;
   turbHero.setAttribute('baseFrequency',
-    (0.012+Math.sin(phase*1.3)*0.003).toFixed(5)+' '+
-    (0.008+Math.cos(phase*0.9)*0.002).toFixed(5));
-  turbHero.setAttribute('seed',(3+Math.sin(phase*0.4)*2).toFixed(3));
-  requestAnimationFrame(animateWater);
+    (0.012+Math.sin(phase*1.3)*0.0025).toFixed(5)+' '+
+    (0.008+Math.cos(phase*0.9)*0.0018).toFixed(5));
+  waterRafId = requestAnimationFrame(animateWater);
 }
-animateWater();
+
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (!waterAnimating) { waterAnimating = true; animateWater(); }
+    } else {
+      if (waterAnimating) { waterAnimating = false; cancelAnimationFrame(waterRafId); }
+    }
+  });
+}, { threshold: 0.05 });
+
+heroObserver.observe(document.querySelector('.hero'));
 
 /* ── Ripple ── */
 function spawnRipple(el, e) {
