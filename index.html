@@ -450,6 +450,36 @@ function updateProgress() {
 window.addEventListener('scroll', updateProgress, {passive: true});
 updateProgress();
 
+/* ── Form validation ── */
+function validateForm() {
+  // File or URL — at least one required
+  const hasFile = document.getElementById('repFile').files.length > 0;
+  const hasUrl  = document.getElementById('reportUrl').value.trim().length > 0;
+  if (!hasFile && !hasUrl) return 'Please attach your ESG report — upload a file or paste a link.';
+
+  // Radio questions a) to d)
+  if (!document.querySelector('input[name="wall"]:checked'))     return 'Please answer question a) — where does your ESG communication hit a wall?';
+  if (!document.querySelector('input[name="audience"]:checked')) return 'Please answer question b) — who is your primary audience?';
+  if (!document.querySelector('input[name="purpose"]:checked'))  return 'Please answer question c) — what is the purpose of this film?';
+  if (!document.querySelector('input[name="format"]:checked'))   return 'Please answer question d) — do you have a preferred format?';
+
+  // Return date
+  if (!document.getElementById('returnDate').value) return 'Please let us know when you\'re back in the office.';
+
+  // Name and email
+  const name  = document.getElementById('contact').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!name)  return 'Please enter your name.';
+  if (!email) return 'Please enter your email address.';
+
+  // Phone — required only if followup checked
+  const followup = document.getElementById('followup').checked;
+  const phone    = document.getElementById('phone').value.trim();
+  if (followup && !phone) return 'Please enter your phone number so we can follow up.';
+
+  return null; // all good
+}
+
 /* ── Form submit ── */
 document.getElementById('esgForm').addEventListener('submit', function(e) {
   e.preventDefault();
@@ -458,11 +488,11 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
   const sendingMsg = document.getElementById('sendingMsg');
   const errorMsg   = document.getElementById('errorMsg');
 
-  const name  = document.getElementById('contact').value.trim();
-  const email = document.getElementById('email').value.trim();
-  if (!name || !email) {
-    errorMsg.textContent   = 'Please fill in your name and email.';
+  const validationError = validateForm();
+  if (validationError) {
+    errorMsg.textContent   = validationError;
     errorMsg.style.display = 'block';
+    errorMsg.scrollIntoView({behavior: 'smooth', block: 'center'});
     return;
   }
 
@@ -479,12 +509,10 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
     if (xhr.readyState !== 4) return;
 
     if (xhr.status >= 200 && xhr.status < 300) {
-      // Success — scroll to closing
       sendingMsg.style.display = 'none';
       document.getElementById('formOuter').style.display = 'none';
       document.querySelector('.closing').scrollIntoView({behavior:'smooth'});
     } else {
-      // Server returned an error
       btn.disabled             = false;
       sendingMsg.style.display = 'none';
       errorMsg.textContent     = 'Something went wrong. Please try again or reach us at info@esgfilms.eu';
@@ -493,7 +521,6 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
   };
 
   xhr.onerror = function() {
-    // Network-level failure
     btn.disabled             = false;
     sendingMsg.style.display = 'none';
     errorMsg.textContent     = 'Something went wrong. Please try again or reach us at info@esgfilms.eu';
