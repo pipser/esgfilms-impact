@@ -106,6 +106,15 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .checkbox-line{display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;font-size:.82rem;color:#888;line-height:1.6;user-select:none;margin-top:.5rem}
 .checkbox-line input{accent-color:#d4520a;width:13px;height:13px;flex-shrink:0;margin-top:3px}
 
+.more-context-box{position:relative;overflow:hidden;margin-top:2.5rem;padding:1.25rem 1.5rem;border:1.5px solid rgba(60,140,200,.25);border-radius:4px;background:rgba(60,140,200,.04);transition:border-color .3s,background .3s;cursor:pointer}
+.more-context-box:hover{border-color:rgba(60,140,200,.6);background:rgba(60,140,200,.08)}
+.caustics-layer{position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;background:repeating-linear-gradient(70deg,transparent 0px,transparent 14px,rgba(120,200,235,.35) 14px,rgba(120,200,235,.35) 16px,transparent 16px,transparent 34px),repeating-linear-gradient(-50deg,transparent 0px,transparent 20px,rgba(170,220,245,.25) 20px,rgba(170,220,245,.25) 22px,transparent 22px,transparent 42px);filter:url(#caustics-context)}
+.more-context-box:hover .caustics-layer{opacity:1}
+.checkbox-line-large{position:relative;display:flex;align-items:center;gap:1rem;cursor:pointer;user-select:none;z-index:1}
+.checkbox-line-large input{accent-color:#3c8cc8;width:22px;height:22px;flex-shrink:0;cursor:pointer;transition:filter .3s}
+.more-context-box:hover .checkbox-line-large input{filter:brightness(1.3) saturate(1.2)}
+.checkbox-line-large span{font-size:.92rem;color:#1a1a18;font-weight:500;line-height:1.5}
+
 .submit-area{margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(26,26,24,.08);display:flex;align-items:center;justify-content:space-between;gap:2rem;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
 .submit-area.show{opacity:1;transform:translateY(0)}
 .submit-note{font-size:.63rem;color:#bbb;letter-spacing:.06em;text-transform:uppercase;line-height:1.9}
@@ -148,6 +157,10 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
     <filter id="water-hero" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
       <feTurbulence id="turb-hero" type="turbulence" baseFrequency="0.012 0.008" numOctaves="3" seed="3" result="noise"/>
       <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="caustics-context" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feTurbulence id="turb-context" type="turbulence" baseFrequency="0.015 0.02" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
   </defs>
 </svg>
@@ -270,10 +283,11 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       <textarea class="textarea" id="inspoNote" name="inspoNote" placeholder="What caught your attention — style, tone, format, message..."></textarea>
     </div>
 
-    <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(26,26,24,.08)">
-      <label class="checkbox-line">
+    <div class="more-context-box">
+      <div class="caustics-layer"></div>
+      <label class="checkbox-line-large">
         <input type="checkbox" id="moreContext" name="moreContext" value="yes"/>
-        There's more context to share — I'm happy for ESG Films to reach out.
+        <span>Yes, I'm happy to fill out a more detailed brief — feel free to reach out.</span>
       </label>
     </div>
   </div>
@@ -373,6 +387,34 @@ const heroObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.05 });
 
 heroObserver.observe(document.querySelector('.hero'));
+
+/* ── Caustics hover effect on more-context box ── */
+const contextBox = document.querySelector('.more-context-box');
+const turbContext = document.getElementById('turb-context');
+let contextPhase = 0;
+let contextRaf = null;
+let contextAnimating = false;
+
+function animateCaustics() {
+  contextPhase += 0.015;
+  const fx = (0.015 + Math.sin(contextPhase * 0.6) * 0.006).toFixed(4);
+  const fy = (0.02 + Math.cos(contextPhase * 0.45) * 0.007).toFixed(4);
+  turbContext.setAttribute('baseFrequency', fx + ' ' + fy);
+  contextRaf = requestAnimationFrame(animateCaustics);
+}
+
+if (contextBox) {
+  contextBox.addEventListener('mouseenter', () => {
+    if (!contextAnimating) {
+      contextAnimating = true;
+      animateCaustics();
+    }
+  });
+  contextBox.addEventListener('mouseleave', () => {
+    contextAnimating = false;
+    if (contextRaf) cancelAnimationFrame(contextRaf);
+  });
+}
 
 /* ── Ripple ── */
 function spawnRipple(el, e) {
