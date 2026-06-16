@@ -501,6 +501,7 @@ heroObserver.observe(document.querySelector('.hero'));
 
 /* ── Caustics hover effect on more-context box ── */
 const contextBox = document.querySelector('.more-context-box');
+const pricingBox = document.querySelector('.pricing-box');
 const turbContext = document.getElementById('turb-context');
 let contextPhase = 0;
 let contextRaf = null;
@@ -514,17 +515,26 @@ function animateCaustics() {
   contextRaf = requestAnimationFrame(animateCaustics);
 }
 
+function startCaustics() {
+  if (!contextAnimating) {
+    contextAnimating = true;
+    animateCaustics();
+  }
+}
+
+function stopCaustics() {
+  contextAnimating = false;
+  if (contextRaf) cancelAnimationFrame(contextRaf);
+}
+
 if (contextBox) {
-  contextBox.addEventListener('mouseenter', () => {
-    if (!contextAnimating) {
-      contextAnimating = true;
-      animateCaustics();
-    }
-  });
-  contextBox.addEventListener('mouseleave', () => {
-    contextAnimating = false;
-    if (contextRaf) cancelAnimationFrame(contextRaf);
-  });
+  contextBox.addEventListener('mouseenter', startCaustics);
+  contextBox.addEventListener('mouseleave', stopCaustics);
+}
+
+if (pricingBox) {
+  pricingBox.addEventListener('mouseenter', startCaustics);
+  pricingBox.addEventListener('mouseleave', stopCaustics);
 }
 
 /* ── Ripple ── */
