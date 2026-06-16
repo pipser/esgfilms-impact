@@ -217,18 +217,16 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 <div class="logo-strip">
   <div class="logo-track-wrap">
     <div class="logo-track">
-      <!-- group 1: Atlantic, Exportdrvo, ZEZ -->
       <img src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa">
-      <img class="logo-exportdrvo" src="https://esgfilms.eu/uploads/exportdrvo.png" alt="Exportdrvo 75">
-      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/green_energy.png" alt="ZEZ Green Energy Cooperative">
-      <!-- group 2: Ministarstvo, HGK, PBZ -->
       <img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Republic of Croatia Ministry of Tourism and Sport">
       <img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy">
       <img class="logo-pbz" src="https://esgfilms.eu/uploads/pbz.png" alt="PBZ Intesa Sanpaolo Group">
-      <!-- repeat group 1 for seamless return -->
-      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa">
       <img class="logo-exportdrvo" src="https://esgfilms.eu/uploads/exportdrvo.png" alt="Exportdrvo 75">
       <img src="https://esgfilms.eu/wp-content/uploads/2026/01/green_energy.png" alt="ZEZ Green Energy Cooperative">
+      <!-- first 3 repeated for seamless loop -->
+      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa">
+      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Republic of Croatia Ministry of Tourism and Sport">
+      <img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy">
     </div>
   </div>
 </div>
@@ -665,29 +663,50 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
 <script>
 (function(){
   var track = document.querySelector('.logo-track');
-  var imgs = track.querySelectorAll('img');
-  var atGroup2 = false;
+  var imgs  = track.querySelectorAll('img');
+  var gap   = 0;
+  var step  = 0; // how many logos we've advanced
+  var TOTAL = 6; // original logos (imgs 0-5); imgs 6-8 are clones for seamless wrap
 
-  function getGroup1Width() {
-    var gap = parseFloat(getComputedStyle(track).gap) || 48;
-    var w = 0;
-    for (var i = 0; i < 3; i++) w += imgs[i].getBoundingClientRect().width;
-    w += gap * 3; // 3 gaps (after each of the 3 imgs)
-    return w;
+  function getGap() {
+    return parseFloat(getComputedStyle(track).gap) || 48;
   }
 
-  function slide() {
-    if (atGroup2) {
-      track.style.transform = 'translateX(0)';
-      atGroup2 = false;
-    } else {
-      track.style.transform = 'translateX(-' + getGroup1Width() + 'px)';
-      atGroup2 = true;
+  function advance() {
+    gap = getGap();
+    step++;
+
+    // width of the logo stepping off screen (index = step-1)
+    var idx = (step - 1) % TOTAL;
+    var w = imgs[idx].getBoundingClientRect().width;
+
+    // accumulate total translateX
+    // each step we add (width of departing logo + gap)
+    offsets[step] = (offsets[step - 1] || 0) + w + gap;
+
+    track.style.transform = 'translateX(-' + offsets[step] + 'px)';
+
+    // after 6 steps we've gone through all originals — reset silently
+    if (step >= TOTAL) {
+      setTimeout(function() {
+        track.style.transition = 'none';
+        track.style.transform  = 'translateX(0)';
+        // force reflow
+        track.getBoundingClientRect();
+        track.style.transition = '';
+        step    = 0;
+        offsets = {0: 0};
+      }, 750); // wait for slide transition to finish
     }
   }
 
+  var offsets = {0: 0};
+
+  // wait for images
   var loaded = 0;
-  function onLoad() { if (++loaded >= imgs.length) setInterval(slide, 3000); }
+  function onLoad() {
+    if (++loaded >= imgs.length) setInterval(advance, 3000);
+  }
   for (var i = 0; i < imgs.length; i++) {
     if (imgs[i].complete) onLoad();
     else imgs[i].addEventListener('load', onLoad);
