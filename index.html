@@ -52,6 +52,10 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .visit-link a{color:#888;text-decoration:none}
 .visit-link a:hover{color:#1a1a18}
 .visit-link .orange{color:#d4520a;font-weight:500}
+.logo-strip{background:#fff;border-top:0.5px solid rgba(0,0,0,0.07);border-bottom:0.5px solid rgba(0,0,0,0.07);padding:1.25rem 3rem;position:relative;z-index:10}
+.logo-strip-label{font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:#bbb;margin-bottom:1rem}
+.logo-row{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
+.logo-row img{height:36px;width:auto;object-fit:contain}
 
 .step{padding:4rem 0;border-top:1px solid rgba(26,26,24,.08)}
 .step:first-child{border-top:none;padding-top:4rem}
@@ -148,6 +152,9 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 @media(max-width:600px){
   .hero-content{padding:9rem 1.5rem 4rem}
   .form-outer{padding:0 1.5rem 4rem}
+  .logo-strip{padding:1rem 1.5rem}
+  .logo-row{gap:1.5rem}
+  .logo-row img{height:28px}
   .choices{grid-template-columns:1fr}
   .choice-full{grid-column:1}
   .fields-row{grid-template-columns:1fr}
@@ -200,6 +207,17 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 
 <div class="visit-link">
   <a href="https://esgfilms.eu" target="_blank" rel="noopener">Visit <span class="orange">esgfilms.eu</span> to learn more about us</a>
+</div>
+
+<div class="logo-strip">
+  <div class="logo-strip-label">Already trusted by</div>
+  <div class="logo-row">
+    <img src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa">
+    <img src="https://esgfilms.eu/wp-content/uploads/2026/01/exportdrvo.png" alt="Exportdrvo 75">
+    <img src="https://esgfilms.eu/wp-content/uploads/2026/01/green_energy.png" alt="ZEZ Green Energy Cooperative">
+    <img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Republic of Croatia Ministry of Tourism and Sport">
+    <img src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy">
+  </div>
 </div>
 
 <div class="form-outer" id="formOuter">
