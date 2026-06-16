@@ -124,6 +124,9 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .more-context-box:hover{border-color:rgba(30,90,150,.7);background:rgba(40,110,170,.22)}
 .caustics-layer{position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;background:repeating-linear-gradient(70deg,transparent 0px,transparent 14px,rgba(255,255,255,.6) 14px,rgba(255,255,255,.6) 16px,transparent 16px,transparent 34px),repeating-linear-gradient(-50deg,transparent 0px,transparent 20px,rgba(255,255,255,.4) 20px,rgba(255,255,255,.4) 22px,transparent 22px,transparent 42px);filter:url(#caustics-context)}
 .more-context-box:hover .caustics-layer{opacity:1}
+.pricing-box{position:relative;overflow:hidden;margin-top:1rem;padding:1.25rem 1.5rem;border:1.5px solid rgba(30,90,150,.35);border-radius:4px;background:rgba(255,255,255,.97);transition:border-color .3s,background .3s;cursor:pointer}
+.pricing-box:hover{border-color:rgba(30,90,150,.7);background:rgba(255,255,255,1)}
+.pricing-box .checkbox-line-large span{color:#1a1a18;font-weight:400;font-size:.88rem}
 .checkbox-line-large{position:relative;display:flex;align-items:center;gap:1rem;cursor:pointer;user-select:none;z-index:1}
 .checkbox-line-large input{accent-color:#d4520a;width:22px;height:22px;flex-shrink:0;cursor:pointer;transition:filter .3s}
 .more-context-box:hover .checkbox-line-large input{filter:brightness(1.3) saturate(1.2)}
@@ -336,6 +339,13 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       <label class="checkbox-line-large">
         <input type="checkbox" id="moreContext" name="moreContext" value="yes"/>
         <span>Happy to fill out a more detailed brief? Just tick this box and we'll send it over.</span>
+      </label>
+    </div>
+
+    <div class="pricing-box">
+      <label class="checkbox-line-large">
+        <input type="checkbox" id="pricingInterest" name="pricingInterest" value="yes"/>
+        <span>I'd like to know what something like this roughly costs.</span>
       </label>
     </div>
   </div>
