@@ -54,11 +54,11 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .visit-link .orange{color:#d4520a;font-weight:500}
 .logo-strip{background:rgba(255,255,255,.97);padding:1.5rem 3rem;position:relative;z-index:10}
 .logo-track-wrap{overflow:hidden;max-width:680px;margin:0 auto}
-.logo-track{display:flex;align-items:center;gap:3rem;width:max-content;transition:transform .7s cubic-bezier(.77,0,.175,1)}
-.logo-track img{height:25px;width:auto;object-fit:contain;flex-shrink:0;filter:grayscale(100%) opacity(0.6)}
-.logo-track img.logo-exportdrvo{height:26px}
-.logo-track img.logo-hgk{height:72px;max-width:160px}
-.logo-track img.logo-pbz{height:34px;max-width:140px}
+.logo-track{display:flex;align-items:center;width:max-content;transition:transform .6s cubic-bezier(.65,0,.35,1)}
+.logo-cell{width:170px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-cell img{max-width:130px;max-height:44px;width:auto;height:auto;object-fit:contain;filter:grayscale(100%) opacity(0.6)}
+.logo-cell img.logo-hgk{max-height:56px;max-width:130px}
+.logo-cell img.logo-pbz{max-height:32px;max-width:130px}
 
 
 .step{padding:4rem 0;border-top:1px solid rgba(26,26,24,.08)}
@@ -157,9 +157,11 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
   .hero-content{padding:9rem 1.5rem 4rem}
   .form-outer{padding:0 1.5rem 4rem}
   .logo-strip{padding:1rem 1.5rem}
-  .logo-track img{height:20px}
-  .logo-track img.logo-hgk{height:38px}
-  .logo-track img.logo-pbz{height:24px}
+  .logo-strip{padding:1rem 1rem}
+  .logo-track-wrap{max-width:100%}
+  .logo-cell{width:calc(100vw / 4 - 0.5rem)}
+  .logo-cell img{max-width:90%;max-height:32px}
+  .logo-cell img.logo-hgk{max-height:42px}
   .choices{grid-template-columns:1fr}
   .choice-full{grid-column:1}
   .fields-row{grid-template-columns:1fr}
@@ -216,17 +218,18 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 
 <div class="logo-strip">
   <div class="logo-track-wrap">
-    <div class="logo-track">
-      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa">
-      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Republic of Croatia Ministry of Tourism and Sport">
-      <img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy">
-      <img class="logo-pbz" src="https://esgfilms.eu/uploads/pbz.png" alt="PBZ Intesa Sanpaolo Group">
-      <img class="logo-exportdrvo" src="https://esgfilms.eu/uploads/exportdrvo.png" alt="Exportdrvo 75">
-      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/green_energy.png" alt="ZEZ Green Energy Cooperative">
-      <!-- first 3 repeated for seamless loop -->
-      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa">
-      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Republic of Croatia Ministry of Tourism and Sport">
-      <img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy">
+    <div class="logo-track" id="logoTrack">
+      <div class="logo-cell"><img src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa"></div>
+      <div class="logo-cell"><img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Ministry of Tourism and Sport"></div>
+      <div class="logo-cell"><img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy"></div>
+      <div class="logo-cell"><img class="logo-pbz" src="https://esgfilms.eu/uploads/pbz.png" alt="PBZ Intesa Sanpaolo Group"></div>
+      <div class="logo-cell"><img class="logo-exportdrvo" src="https://esgfilms.eu/uploads/exportdrvo.png" alt="Exportdrvo 75"></div>
+      <div class="logo-cell"><img src="https://esgfilms.eu/wp-content/uploads/2026/01/green_energy.png" alt="ZEZ Green Energy Cooperative"></div>
+      <!-- first 4 repeated for seamless loop -->
+      <div class="logo-cell"><img src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa"></div>
+      <div class="logo-cell"><img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Ministry of Tourism and Sport"></div>
+      <div class="logo-cell"><img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy"></div>
+      <div class="logo-cell"><img class="logo-pbz" src="https://esgfilms.eu/uploads/pbz.png" alt="PBZ Intesa Sanpaolo Group"></div>
     </div>
   </div>
 </div>
@@ -662,55 +665,28 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
 </script>
 <script>
 (function(){
-  var track = document.querySelector('.logo-track');
-  var imgs  = track.querySelectorAll('img');
-  var gap   = 0;
-  var step  = 0; // how many logos we've advanced
-  var TOTAL = 6; // original logos (imgs 0-5); imgs 6-8 are clones for seamless wrap
-
-  function getGap() {
-    return parseFloat(getComputedStyle(track).gap) || 48;
-  }
+  var track   = document.getElementById('logoTrack');
+  var CELL    = 170;   // must match .logo-cell width in CSS
+  var TOTAL   = 6;     // original logos
+  var step    = 0;
 
   function advance() {
-    gap = getGap();
     step++;
+    track.style.transform = 'translateX(-' + (step * CELL) + 'px)';
 
-    // width of the logo stepping off screen (index = step-1)
-    var idx = (step - 1) % TOTAL;
-    var w = imgs[idx].getBoundingClientRect().width;
-
-    // accumulate total translateX
-    // each step we add (width of departing logo + gap)
-    offsets[step] = (offsets[step - 1] || 0) + w + gap;
-
-    track.style.transform = 'translateX(-' + offsets[step] + 'px)';
-
-    // after 6 steps we've gone through all originals — reset silently
     if (step >= TOTAL) {
-      setTimeout(function() {
+      // after last original has left, silently snap back
+      setTimeout(function(){
         track.style.transition = 'none';
         track.style.transform  = 'translateX(0)';
-        // force reflow
-        track.getBoundingClientRect();
+        track.getBoundingClientRect(); // force reflow
         track.style.transition = '';
-        step    = 0;
-        offsets = {0: 0};
-      }, 750); // wait for slide transition to finish
+        step = 0;
+      }, 650);
     }
   }
 
-  var offsets = {0: 0};
-
-  // wait for images
-  var loaded = 0;
-  function onLoad() {
-    if (++loaded >= imgs.length) setInterval(advance, 3000);
-  }
-  for (var i = 0; i < imgs.length; i++) {
-    if (imgs[i].complete) onLoad();
-    else imgs[i].addEventListener('load', onLoad);
-  }
+  setInterval(advance, 3000);
 })();
 </script>
 </body>
