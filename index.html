@@ -151,6 +151,12 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 /* Sending state */
 .sending-msg{font-size:.78rem;color:#d4520a;letter-spacing:.06em;display:none}
 
+.closing-logo{position:absolute;top:1.5rem;left:3rem;z-index:5}
+.closing-logo img{height:110px;width:auto;display:block;filter:brightness(0) invert(1);margin-left:-12px}
+.closing-visit{margin-top:2rem;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;color:rgba(255,255,255,.6);letter-spacing:.03em}
+.closing-visit a{color:rgba(255,255,255,.6);text-decoration:none}
+.closing-visit a span{color:#d4520a}
+@media(max-width:600px){.closing-logo{left:1.5rem}.closing-logo img{height:80px}}
 .closing{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;z-index:10}
 .closing-bg{position:absolute;inset:0;background-image:url('DE_TURIZAM9.png');background-size:cover;background-position:center bottom}
 .closing-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.52) 0%,rgba(10,10,8,.38) 50%,rgba(10,10,8,.62) 100%);z-index:2}
@@ -211,7 +217,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
     </div>
     <p class="hero-sub">
       We think your <span class="orange">ESG report</span> is the foundation of a great story.
-      <span class="orange" style="white-space:nowrap">Let us brainstorm while you chill.</span>
+      <span style="white-space:nowrap">Let us brainstorm while you chill.</span>
     </p>
     <p class="status-line" id="statusLine">Based on your report and answers, you'll receive a short treatment — concept, format, story, and why it would work. We can fit your sustainable story into fiction, documentary, educational, shorts, or podcast. No charge, no commitment. Just our creative take.</p>
     <p class="status-line status-bold" id="statusBold"><span style="color:#d4520a">Seven spots</span> available before we take our summer break.</p>
@@ -255,7 +261,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 
   <div class="step">
     <div class="step-label">Step 1 of 4</div>
-    <div class="step-title">Your ESG report</div>
+    <div class="step-title">Upload your ESG report</div>
     <p class="step-desc" id="step1Desc"></p>
     <div class="upload-zone" id="dropZone">
       <input type="file" id="repFile" name="repFile" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip"/>
@@ -273,7 +279,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 
   <div class="step">
     <div class="step-label">Step 2 of 4</div>
-    <div class="step-title">Quick briefing</div>
+    <div class="step-title">Fill out quick briefing</div>
     <p class="step-desc">Four questions. This is where the real work starts.</p>
 
     <div class="brief-question">
@@ -358,7 +364,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 
   <div class="step phase-closed-hide" id="timelineStep">
     <div class="step-label">Step 3 of 4</div>
-    <div class="step-title">Your timeline</div>
+    <div class="step-title">Give us a deadline</div>
     <p class="step-desc">We want to have something ready before you're back.</p>
     <div class="date-row">
       <div>
@@ -389,7 +395,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
   </div>
 
   <div class="submit-area" id="submitArea">
-    <div class="submit-note">All information is confidential and used<br>solely to prepare your communication brief.</div>
+    <div class="submit-note">All information is confidential and used<br>solely to prepare your treatment.</div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem">
       <button class="btn-submit" type="submit" id="btnSubmit">
         <span id="btnSubmitText">Send it over. Enjoy your summer.</span>
@@ -408,9 +414,20 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 <div class="closing">
   <div class="closing-bg"></div>
   <div class="closing-overlay"></div>
+  <div class="closing-logo">
+    <a href="https://esgfilms.eu" target="_blank" rel="noopener" title="ESG Films">
+      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/ESG-FILMS-logo-2021-white.png" alt="ESG Films"/>
+    </a>
+  </div>
   <div class="closing-content">
-    <div class="closing-nice">Thanks for submitting.</div>
-    <div class="closing-surprise" id="closingLine">Expect your treatment on <span id="closingDate"></span>. Until then — enjoy the summer.</div>
+    <div class="closing-nice">Have a nice summer.</div>
+    <div class="closing-surprise" id="closingLine">Be ready for a surprise.</div>
+    <div class="closing-nice" id="closingThanks" style="display:none">Thanks for submitting.</div>
+    <div class="closing-nice" id="closingDate" style="display:none;margin-top:.1em"></div>
+    <div class="closing-nice" id="closingUntil" style="display:none;margin-top:.1em">Until then — enjoy the <span style="color:#d4520a">summer.</span></div>
+    <div class="closing-visit">
+      <a href="https://esgfilms.eu" target="_blank" rel="noopener">Visit <span>esgfilms.eu</span> to learn more about us</a>
+    </div>
   </div>
 </div>
 
@@ -687,24 +704,28 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
       document.querySelector('.logo-strip').style.display = 'none';
       document.querySelector('.hero').style.display = 'none';
 
-      // Build closing message with date
+      // Hide default pre-submit closing text
+      document.getElementById('closingLine').style.display = 'none';
+
+      // Show 3-line success message
+      document.getElementById('closingThanks').style.display = '';
+
       const phase = document.body.dataset.phase || 'open';
-      const closingEl = document.getElementById('closingLine');
       const dateEl = document.getElementById('closingDate');
+      const untilEl = document.getElementById('closingUntil');
 
       if (phase === 'open') {
         const returnVal = document.getElementById('returnDate').value;
-        if (returnVal && dateEl) {
+        if (returnVal) {
           const d = new Date(returnVal + 'T12:00:00');
           const formatted = d.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long'});
-          dateEl.textContent = formatted;
-          closingEl.style.display = '';
-        } else {
-          // no date selected — generic message
-          closingEl.innerHTML = 'Until then — enjoy the summer.';
+          dateEl.textContent = 'Expect your treatment on ' + formatted + '.';
+          dateEl.style.display = '';
         }
+        untilEl.style.display = '';
       } else {
-        closingEl.innerHTML = "We'll be in touch if there's a fit.";
+        dateEl.textContent = "We'll be in touch if there's a fit.";
+        dateEl.style.display = '';
       }
 
       document.querySelector('.closing').scrollIntoView({behavior:'smooth'});
