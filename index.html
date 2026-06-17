@@ -466,7 +466,6 @@ function applyPhase(phase) {
 
   const calWrap = document.getElementById('timelineStep');
   if (calWrap) calWrap.style.display = c.showTimeline ? '' : 'none';
-  document.getElementById('closingLine').textContent  = c.closingLine;
 
   document.getElementById('btnSubmit').classList.toggle('compact', phase === 'closed');
   document.getElementById('timelineStep').classList.toggle('phase-closed-hide', !c.showTimeline);
