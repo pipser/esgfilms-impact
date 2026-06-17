@@ -207,7 +207,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
     <div class="hero-eyebrow">
       <span class="line"><span class="orange">E</span>NJOY</span>
       <span class="line"><span class="orange">S</span>UMMER.</span>
-      <span class="line"><span class="orange">G</span>ET BRIEF.</span>
+      <span class="line"><span class="orange">G</span>ET A BRIEF.</span>
     </div>
     <p class="hero-sub">
       We think your <span class="orange">ESG report</span> is the foundation of a great story.
@@ -679,6 +679,7 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
     if (xhr.status >= 200 && xhr.status < 300) {
       sendingMsg.style.display = 'none';
       document.getElementById('formOuter').style.display = 'none';
+      document.querySelector('.logo-strip').style.display = 'none';
       document.querySelector('.closing').scrollIntoView({behavior:'smooth'});
     } else {
       btn.disabled             = false;
