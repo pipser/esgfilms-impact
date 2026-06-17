@@ -151,7 +151,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 /* Sending state */
 .sending-msg{font-size:.78rem;color:#d4520a;letter-spacing:.06em;display:none}
 
-.closing{position:relative;overflow:hidden;min-height:500px;display:flex;align-items:center;justify-content:center;z-index:10}
+.closing{position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;z-index:10}
 .closing-bg{position:absolute;inset:0;background-image:url('DE_TURIZAM9.png');background-size:cover;background-position:center bottom}
 .closing-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,.52) 0%,rgba(10,10,8,.38) 50%,rgba(10,10,8,.62) 100%);z-index:2}
 .closing-content{position:relative;z-index:3;text-align:center;padding:6rem 3rem}
@@ -249,7 +249,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
   </div>
 
   <div class="form-intro">
-    <p class="form-intro-text">Send us your ESG report before you leave. We'll analyse it and prepare an initial communication brief — ready on your desk when you're back.</p>
+    <p class="form-intro-text">Send us your ESG report before you leave. We'll analyse it and prepare an initial treatment — ready on your desk when you're back.</p>
     <p class="form-intro-meta">4 steps · 3–5 minutes &nbsp;·&nbsp; <a href="https://esgfilms.eu" target="_blank" rel="noopener" style="color:#aaa;text-decoration:none">Visit <span style="color:#d4520a">esgfilms.eu</span> to learn more about us</a></p>
   </div>
 
@@ -409,8 +409,8 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
   <div class="closing-bg"></div>
   <div class="closing-overlay"></div>
   <div class="closing-content">
-    <div class="closing-nice">Have a nice summer.</div>
-    <div class="closing-surprise" id="closingLine">Be ready for a surprise.</div>
+    <div class="closing-nice">Thanks for submitting.</div>
+    <div class="closing-surprise" id="closingLine">Expect your treatment on <span id="closingDate"></span>. Until then — enjoy the summer.</div>
   </div>
 </div>
 
@@ -432,7 +432,7 @@ const COPY = {
     step1Desc: "",
     btnText: "Send it over. Enjoy your summer.",
     btnEmoji: "☀️",
-    closingLine: "Be ready for a surprise.",
+    closingLine: "open",
     showTimeline: true
   },
   closed: {
@@ -442,7 +442,7 @@ const COPY = {
     step1Desc: "This season's fast-track spots are taken. Send us your ESG report anyway — we read every one, and we'll get back to you when there's room to take on more.",
     btnText: "Send it over — we'll reach out when ready",
     btnEmoji: "",
-    closingLine: "We'll be in touch if there's a fit.",
+    closingLine: "closed",
     showTimeline: false
   }
 };
@@ -460,6 +460,12 @@ function applyPhase(phase) {
   document.getElementById('step1Desc').textContent    = c.step1Desc;
   document.getElementById('btnSubmitText').textContent = c.btnText;
   document.getElementById('btnSubmitEmoji').textContent = c.btnEmoji;
+
+  // store phase for use on submit
+  document.body.dataset.phase = phase;
+
+  const calWrap = document.getElementById('timelineStep');
+  if (calWrap) calWrap.style.display = c.showTimeline ? '' : 'none';
   document.getElementById('closingLine').textContent  = c.closingLine;
 
   document.getElementById('btnSubmit').classList.toggle('compact', phase === 'closed');
@@ -680,6 +686,28 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
       sendingMsg.style.display = 'none';
       document.getElementById('formOuter').style.display = 'none';
       document.querySelector('.logo-strip').style.display = 'none';
+      document.querySelector('.hero').style.display = 'none';
+
+      // Build closing message with date
+      const phase = document.body.dataset.phase || 'open';
+      const closingEl = document.getElementById('closingLine');
+      const dateEl = document.getElementById('closingDate');
+
+      if (phase === 'open') {
+        const returnVal = document.getElementById('returnDate').value;
+        if (returnVal && dateEl) {
+          const d = new Date(returnVal + 'T12:00:00');
+          const formatted = d.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long'});
+          dateEl.textContent = formatted;
+          closingEl.style.display = '';
+        } else {
+          // no date selected — generic message
+          closingEl.innerHTML = 'Until then — enjoy the summer.';
+        }
+      } else {
+        closingEl.innerHTML = "We'll be in touch if there's a fit.";
+      }
+
       document.querySelector('.closing').scrollIntoView({behavior:'smooth'});
     } else {
       btn.disabled             = false;
