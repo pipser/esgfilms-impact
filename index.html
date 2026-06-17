@@ -52,14 +52,16 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 .visit-link a{color:#888;text-decoration:none}
 .visit-link a:hover{color:#1a1a18}
 .visit-link .orange{color:#d4520a;font-weight:500}
-.logo-strip{background:rgba(255,255,255,.97);padding:1.5rem 3rem;position:relative;z-index:10}
+.logo-strip{background:rgba(255,255,255,.97);padding:1.5rem 0;position:relative;z-index:10;overflow:hidden}
 .logo-track-wrap{overflow:hidden;max-width:680px;margin:0 auto}
-.logo-track{display:flex;align-items:center;width:max-content;transition:transform .6s cubic-bezier(.65,0,.35,1)}
-.logo-cell{width:170px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.logo-cell img{max-width:104px;max-height:44px;width:auto;height:auto;object-fit:contain;filter:grayscale(100%) opacity(0.6)}
-.logo-cell img.logo-hgk{max-height:64px;max-width:130px}
-.logo-cell img.logo-pbz{max-height:32px;max-width:130px}
-.logo-cell img.logo-atlantic{max-width:84px}
+.logo-track{display:flex;align-items:center;gap:3rem;width:max-content;animation:logoScroll 22s linear infinite}
+.logo-track:hover{animation-play-state:paused}
+.logo-track img{height:32px;width:auto;object-fit:contain;flex-shrink:0;filter:grayscale(100%) opacity(0.6)}
+.logo-track img.logo-hgk{height:56px;max-width:140px}
+.logo-track img.logo-pbz{height:30px;max-width:120px}
+.logo-track img.logo-exportdrvo{height:24px}
+.logo-track img.logo-atlantic{height:28px}
+@keyframes logoScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 
 .step{padding:4rem 0;border-top:1px solid rgba(26,26,24,.08)}
@@ -164,12 +166,11 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 @media(max-width:600px){
   .hero-content{padding:9rem 1.5rem 4rem}
   .form-outer{padding:0 1.5rem 4rem}
-  .logo-strip{padding:1rem 1.5rem}
-  .logo-strip{padding:1rem 1rem}
-  .logo-track-wrap{max-width:100%}
-  .logo-cell{width:calc(100vw / 4 - 0.5rem)}
-  .logo-cell img{max-width:90%;max-height:32px}
-  .logo-cell img.logo-hgk{max-height:42px}
+  .logo-strip{padding:1rem 0}
+  .logo-track img{height:24px}
+  .logo-track img.logo-hgk{height:40px}
+  .logo-track img.logo-pbz{height:22px}
+  .logo-track gap{gap:2rem}
   .choices{grid-template-columns:1fr}
   .choice-full{grid-column:1}
   .fields-row{grid-template-columns:1fr}
@@ -228,17 +229,19 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 <div class="logo-strip">
   <div class="logo-track-wrap">
     <div class="logo-track" id="logoTrack">
-      <div class="logo-cell"><img class="logo-atlantic" src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa"></div>
-      <div class="logo-cell"><img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Ministry of Tourism and Sport"></div>
-      <div class="logo-cell"><img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy"></div>
-      <div class="logo-cell"><img class="logo-pbz" src="https://esgfilms.eu/uploads/pbz.png" alt="PBZ Intesa Sanpaolo Group"></div>
-      <div class="logo-cell"><img class="logo-exportdrvo" src="https://esgfilms.eu/uploads/exportdrvo.png" alt="Exportdrvo 75"></div>
-      <div class="logo-cell"><img src="https://esgfilms.eu/wp-content/uploads/2026/01/green_energy.png" alt="ZEZ Green Energy Cooperative"></div>
-      <!-- first 4 repeated for seamless loop -->
-      <div class="logo-cell"><img class="logo-atlantic" src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa"></div>
-      <div class="logo-cell"><img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Ministry of Tourism and Sport"></div>
-      <div class="logo-cell"><img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy"></div>
-      <div class="logo-cell"><img class="logo-pbz" src="https://esgfilms.eu/uploads/pbz.png" alt="PBZ Intesa Sanpaolo Group"></div>
+      <img class="logo-atlantic" src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa">
+      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Ministry of Tourism and Sport">
+      <img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy">
+      <img class="logo-pbz" src="https://esgfilms.eu/uploads/pbz.png" alt="PBZ Intesa Sanpaolo Group">
+      <img class="logo-exportdrvo" src="https://esgfilms.eu/uploads/exportdrvo.png" alt="Exportdrvo 75">
+      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/green_energy.png" alt="ZEZ Green Energy Cooperative">
+      <!-- duplicate set for seamless loop -->
+      <img class="logo-atlantic" src="https://esgfilms.eu/wp-content/uploads/2026/01/atlantic_1.png" alt="Atlantic Grupa">
+      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/Ministarstvo-turizma-i-sporta-CMYK-ENG.png" alt="Ministry of Tourism and Sport">
+      <img class="logo-hgk" src="https://esgfilms.eu/wp-content/uploads/2026/01/ENG-primarni-pozitiv-boja-1024x1024.png" alt="HGK Croatian Chamber of Economy">
+      <img class="logo-pbz" src="https://esgfilms.eu/uploads/pbz.png" alt="PBZ Intesa Sanpaolo Group">
+      <img class="logo-exportdrvo" src="https://esgfilms.eu/uploads/exportdrvo.png" alt="Exportdrvo 75">
+      <img src="https://esgfilms.eu/wp-content/uploads/2026/01/green_energy.png" alt="ZEZ Green Energy Cooperative">
     </div>
   </div>
 </div>
@@ -702,32 +705,6 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
 
   xhr.send(formData);
 });
-</script>
-<script>
-(function(){
-  var track   = document.getElementById('logoTrack');
-  var CELL    = 170;   // must match .logo-cell width in CSS
-  var TOTAL   = 6;     // original logos
-  var step    = 0;
-
-  function advance() {
-    step++;
-    track.style.transform = 'translateX(-' + (step * CELL) + 'px)';
-
-    if (step >= TOTAL) {
-      // after last original has left, silently snap back
-      setTimeout(function(){
-        track.style.transition = 'none';
-        track.style.transform  = 'translateX(0)';
-        track.getBoundingClientRect(); // force reflow
-        track.style.transition = '';
-        step = 0;
-      }, 650);
-    }
-  }
-
-  setInterval(advance, 3000);
-})();
 </script>
 </body>
 </html>
