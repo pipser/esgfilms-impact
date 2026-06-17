@@ -216,7 +216,8 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
       We think your <span class="orange">ESG report</span> is the foundation of a great story.
       <span class="orange">Let us brainstorm while you chill.</span>
     </p>
-    <p class="status-line" id="statusLine">Based on your report and answers, you'll receive a short communication brief — key stories, format ideas, honest recommendation. The clearer your challenge, the sharper our brief. No charge, no commitment.<br><span class="status-bold" id="statusBold"><span style="color:#d4520a">Seven spots</span> available before we take our summer break.</span></p>
+    <p class="status-line" id="statusLine">Based on your report and answers, you'll receive a short communication brief — key stories, format ideas, honest recommendation. The clearer your challenge, the sharper our brief. No charge, no commitment.</p>
+    <p class="status-line status-bold" id="statusBold"><span style="color:#d4520a">Seven spots</span> available before we take our summer break.</p>
   </div>
 </div>
 
@@ -430,8 +431,10 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 
 const COPY = {
   open: {
-    statusLine: "Based on your report and answers, you'll receive a short communication brief — key stories, format ideas, honest recommendation. The clearer your challenge, the sharper our brief. No charge, no commitment. Seven spots available before we take our summer break.",
-    step1Desc: "Send us your ESG report before you leave. We'll analyse it and prepare an initial communication brief — ready on your desk when you're back.",
+    statusLine: "Based on your report and answers, you'll receive a short communication brief — key stories, format ideas, honest recommendation. The clearer your challenge, the sharper our brief. No charge, no commitment.",
+    statusBold: "Seven spots available before we take our summer break.",
+    showStatusBold: true,
+    step1Desc: "",
     btnText: "Send it over. Enjoy your summer.",
     btnEmoji: "☀️",
     closingLine: "Be ready for a surprise.",
@@ -439,6 +442,8 @@ const COPY = {
   },
   closed: {
     statusLine: "Fast-track intake is currently closed.",
+    statusBold: "",
+    showStatusBold: false,
     step1Desc: "This season's fast-track spots are taken. Send us your ESG report anyway — we read every one, and we'll get back to you when there's room to take on more.",
     btnText: "Send it over — we'll reach out when ready",
     btnEmoji: "",
@@ -453,6 +458,10 @@ function applyPhase(phase) {
   const c = COPY[phase] || COPY.open;
 
   document.getElementById('statusLine').textContent   = c.statusLine;
+  const boldEl = document.getElementById('statusBold');
+  if (boldEl) {
+    boldEl.style.display = c.showStatusBold ? '' : 'none';
+  }
   document.getElementById('step1Desc').textContent    = c.step1Desc;
   document.getElementById('btnSubmitText').textContent = c.btnText;
   document.getElementById('btnSubmitEmoji').textContent = c.btnEmoji;
