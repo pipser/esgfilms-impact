@@ -50,7 +50,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 
 .logo-strip{background:rgba(255,255,255,.97);padding:1.5rem 0;position:relative;z-index:10;overflow:hidden}
 .logo-track-wrap{overflow:hidden;max-width:680px;margin:0 auto}
-.logo-track{display:flex;align-items:center;gap:3rem;width:max-content;animation:logoScroll 22s linear infinite}
+.logo-track{display:flex;align-items:center;gap:3rem;width:max-content;animation:logoScroll 24s linear infinite}
 .logo-track:hover{animation-play-state:paused}
 .logo-track img{height:32px;width:auto;object-fit:contain;flex-shrink:0;filter:grayscale(100%) opacity(0.6)}
 .logo-track img.logo-hgk{height:56px;max-width:140px}
@@ -462,7 +462,7 @@ const COPY = {
     showTimeline: true
   },
   closed: {
-    statusLine: "Fast-track intake is currently closed.",
+    statusLine: "Fast-track intake is currently closed. Based on your report and answers, you'll receive a short treatment — concept, format, story, and why it would work. No charge, no commitment. Just our creative take.",
     statusBold: "",
     showStatusBold: false,
     step1Desc: "This season's fast-track spots are taken. Send us your ESG report anyway — we read every one, and we'll get back to you when there's room to take on more.",
@@ -738,8 +738,10 @@ document.getElementById('esgForm').addEventListener('submit', function(e) {
         untilEl.style.display = '';
         summerEl.style.display = '';
       } else {
-        dateEl.textContent = "We'll be in touch if there's a fit.";
+        dateEl.textContent = "We'll be in touch before the season's out.";
         dateEl.style.display = '';
+        untilEl.style.display = '';
+        summerEl.style.display = '';
       }
 
       document.querySelector('.closing').scrollIntoView({behavior:'smooth'});
