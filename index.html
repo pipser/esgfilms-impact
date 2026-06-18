@@ -228,6 +228,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
     </p>
     <p class="status-line" id="statusLine">Based on your report and answers, you'll receive a short treatment — concept, format, story, and why it would work. We can fit your sustainable story into fiction, documentary, educational, shorts, or podcast. No charge, no commitment. Just our creative take.</p>
     <p class="status-line status-bold" id="statusBold"><span style="color:#d4520a">Seven spots</span> available before we take our summer break.</p>
+    <p class="status-line" id="statusBoldSecond" style="display:none;margin-top:.3rem"></p>
   </div>
 </div>
 
@@ -262,7 +263,7 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
   </div>
 
   <div class="form-intro">
-    <p class="form-intro-text">Send us your ESG report before you leave. We'll analyse it and prepare an initial treatment — ready on your desk when you're back.</p>
+    <p class="form-intro-text" id="formIntroText">Send us your ESG report before you leave. We'll analyse it and prepare an initial treatment — ready on your desk when you're back.</p>
     <p class="form-intro-meta">4 steps · 3–5 minutes</p>
   </div>
 
@@ -453,7 +454,9 @@ body{font-family:'DM Sans',sans-serif;color:#fff;overflow-x:hidden;background-co
 const COPY = {
   open: {
     statusLine: "Based on your report and answers, you'll receive a short treatment — concept, format, story, and why it would work. We can fit your sustainable story into fiction, documentary, educational, shorts, or podcast. No charge, no commitment. Just our creative take.",
-    statusBold: "Seven spots available before we take our summer break.",
+    formIntroText: "Send us your ESG report before you leave. We'll analyse it and prepare an initial treatment — ready on your desk when you're back.",
+    statusBold: "<span style=\"color:#d4520a\">Seven spots</span> available before we take our summer break.",
+    statusBoldSecond: "",
     showStatusBold: true,
     step1Desc: "",
     btnText: "Send it over. Enjoy your summer.",
@@ -462,9 +465,11 @@ const COPY = {
     showTimeline: true
   },
   closed: {
-    statusLine: "Fast-track intake is currently closed. Based on your report and answers, you'll receive a short treatment — concept, format, story, and why it would work. No charge, no commitment. Just our creative take.",
-    statusBold: "",
-    showStatusBold: false,
+    formIntroText: "Send us your ESG report. We go through every one — and we'll be in touch with our creative take.",
+    statusLine: "Based on your report and answers, you'll receive a short treatment — concept, format, story, and why it would work. We can fit your sustainable story into fiction, documentary, educational, shorts, or podcast. No charge, no commitment. Just our creative take.",
+    statusBold: "<span style=\"text-decoration:line-through;text-decoration-color:#fff\"><span style=\"color:#d4520a;text-decoration:line-through;text-decoration-color:#fff\">Seven spots</span> available before we take our summer break.</span>",
+    showStatusBold: true,
+    statusBoldSecond: "All spots taken. Send your report anyway, we'll reach out when there's room.",
     step1Desc: "This season's fast-track spots are taken. Send us your ESG report anyway — we read every one, and we'll get back to you when there's room to take on more.",
     btnText: "Send it over — we'll reach out when ready",
     btnEmoji: "",
@@ -479,9 +484,25 @@ function applyPhase(phase) {
   const c = COPY[phase] || COPY.open;
 
   document.getElementById('statusLine').textContent   = c.statusLine;
+  const formIntroEl = document.getElementById('formIntroText');
+  if (formIntroEl && c.formIntroText) formIntroEl.textContent = c.formIntroText;
   const boldEl = document.getElementById('statusBold');
+  const boldSecondEl = document.getElementById('statusBoldSecond');
   if (boldEl) {
-    boldEl.style.display = c.showStatusBold ? '' : 'none';
+    if (c.showStatusBold) {
+      boldEl.style.display = '';
+      boldEl.innerHTML = c.statusBold;
+    } else {
+      boldEl.style.display = 'none';
+    }
+  }
+  if (boldSecondEl) {
+    if (c.statusBoldSecond) {
+      boldSecondEl.textContent = c.statusBoldSecond;
+      boldSecondEl.style.display = '';
+    } else {
+      boldSecondEl.style.display = 'none';
+    }
   }
   document.getElementById('step1Desc').textContent    = c.step1Desc;
   document.getElementById('btnSubmitText').textContent = c.btnText;
